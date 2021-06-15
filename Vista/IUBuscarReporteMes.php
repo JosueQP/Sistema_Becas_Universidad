@@ -10,7 +10,8 @@ $listaRegistroEntradaSalidaABI = $ObjListaRegistroEntradaSalida ->ListaEntradaSa
 //echo $listaRegistroEntradaSalidaABI;
 //$fechaInicio = $_REQUEST['fechaInicio'];
 //$fechaFin = $_REQUEST['fechaFin'];
-
+$listaRegistroEntradaSalidaSaldo = $ObjListaRegistroEntradaSalida->ListaEntradaSalidaSaldo($_REQUEST['idAsignacionBecaInstitucional'],$_REQUEST['fechaInicio'],$_REQUEST['fechaFin']);
+//var_dump($listaRegistroEntradaSalidaSaldo);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,8 +21,9 @@ $listaRegistroEntradaSalidaABI = $ObjListaRegistroEntradaSalida ->ListaEntradaSa
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
+    <?php echo "Ganancia:   ".$listaRegistroEntradaSalidaSaldo['pago'];?>
  <form>
 
  <table border="1">

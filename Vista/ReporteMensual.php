@@ -69,6 +69,7 @@ header('Content-Type: text/html; charset=UTF-8');
                     <th>area</th>
                     <th>estudiante</th>
                     <th>Ver</th>
+                    <th>Estado De Cuentas</th>
            
                 </tr>
 
@@ -79,6 +80,7 @@ header('Content-Type: text/html; charset=UTF-8');
                     <td ><?php echo $Listas['nombre']?></td>
                     <td ><?php echo $Listas['Estudiante']?></td>
                     <td><a href="../Vista/IUReporteMensualEstudiante.php?idEstudiante=<?php  echo $Listas['idEstudiante']; ?>">Ver</a></td>
+                    <td><a href="../Vista/IUEstadoDeCuenta.php?codigoEstudiante=<?php  echo $Listas['codigoEstudiante']; ?>">EstadoDeCuenta</a></td>
                 </tr>
                 <?php }?>
             </table>

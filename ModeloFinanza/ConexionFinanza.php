@@ -1,6 +1,6 @@
 <?php
 
-	class Conexion extends PDO
+	class ConexionFinanza extends PDO
 	{
 		private $tipoDB = 'mysql';
 		private $servidor = 'localhost'; 

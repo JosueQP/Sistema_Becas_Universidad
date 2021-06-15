@@ -52,8 +52,8 @@ INSERT INTO estudiante VALUES (NULL,71,'212','Eddy','','Baldez','','Masculino',1
 
 
 -- contrato 
-INSERT INTO contrato VALUES (NULL,2,1,4500,2500);
-INSERT INTO contrato VALUES (NULL,3,6,5000,5000);
+INSERT INTO contrato VALUES (NULL,1,1,4500,2500);
+INSERT INTO contrato VALUES (NULL,6,3,5000,5000);
 INSERT INTO contrato VALUES (NULL,8,8,6000,4500);
 
 -- saldo

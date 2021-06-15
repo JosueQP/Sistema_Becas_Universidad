@@ -66,6 +66,11 @@
 			return $ReporteMensual1;
 
 		}
+		public function HorarioEstudianteTrabajo($idEstudiante){
+			$HorarioEstudianteTrabajo=$this->objDBEstudiante->HorarioEstudiante($idEstudiante);
+			return $HorarioEstudianteTrabajo;
+
+		}
 
 		public function ReporteMesConsulta($fechaInicio,$fechaFin){
 			$ReporteMesConsulta=$this->objDBEstudiante->ReporteMes($fechaInicio,$fechaFin);

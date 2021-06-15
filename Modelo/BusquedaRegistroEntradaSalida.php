@@ -51,6 +51,29 @@
                 return $Lista;
                  
      }
+     public function ListaEntradaSalidaSaldoTotal($idAsignacionBecaInstitucional,$fechaInicio,$fechaFin){
+      //echo "valor asignacion Beca Institucional".$idAsignacionBecaInstitucional."fechaIinicio".$fechaInicio."fecha Fin".$fechaFin;
+       $sql=" 
+       SELECT res.fecha,res.idAsignacionBecaInstitucional,Sum(res.totalHora*pre.precio) as pago
+       FROM registroEntradaSalida res INNER JOIN asignacionBecaInstitucional abi 
+       ON res.idAsignacionBecaInstitucional = abi.idAsignacionBecaInstitucional
+       AND res.fecha BETWEEN :fechaInicio  AND  :fechaFin
+       AND res.idAsignacionBecaInstitucional= :idAsignacionBecaInstitucional
+       INNER JOIN solicitudBecaInstitucional sbi 
+       ON sbi.idSolicitudBecaInstitucional = abi.idSolicitudBecaInstitucional 
+       INNER JOIN precio pre 
+       ON pre.idPrecio = sbi.idPrecio ;
+     "; 
+             $cmd = $this->conexion->prepare($sql);
+              $cmd->bindParam(':idAsignacionBecaInstitucional', $idAsignacionBecaInstitucional);
+              $cmd->bindParam(':fechaInicio', $fechaInicio);
+              $cmd->bindParam(':fechaFin', $fechaFin);
+              $cmd->execute();
+              $Lista=$cmd->fetch();
+              //var_dump ($validado);
+              return $Lista;
+               
+   }
      public function ListaFecha($idAsignacionBecaInstitucional,$fecha){
        // echo "valor asignacion Beca Institucional".$idAsignacionBecaInstitucional."fechaIinicio".$fechaInicio."fecha Fin".$fechaFin;
          $sql=" 

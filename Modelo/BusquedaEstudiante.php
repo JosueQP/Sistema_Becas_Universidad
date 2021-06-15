@@ -104,7 +104,7 @@
         {   //realizando la consulta
         $sqlReporteMensual = "
                         SELECT  CONCAT_WS(' ',e.apellidoPaterno,e.apellidoMaterno,e.primerNombre,
-                        e.segundoNombre) estudiante,g.nombre as gestion,d.nombre as departamento,a.nombre as area,pre.precio, CONCAT_WS(' ',p.apellidoPaterno,p.apellidoMaterno,p.primerNombre,
+                        e.segundoNombre) estudiante,e.idEstudiante,g.nombre as gestion,d.nombre as departamento,a.nombre as area,pre.precio, CONCAT_WS(' ',p.apellidoPaterno,p.apellidoMaterno,p.primerNombre,
                         p.segundoNombre) personal,abi.idAsignacionBecaInstitucional
                         FROM rol r INNER JOIN personal p 
                         ON r.idRol = P.idRol
@@ -133,7 +133,27 @@
             $ReporteMensual = $cmd->fetch();
             return $ReporteMensual;
         }
+        public function HorarioEstudiante($idEstudiante)
+        {   //realizando la consulta
+        $sql = "
+                SELECT d.dia,CONCAT_WS(' ',e.apellidoPaterno,e.apellidoMaterno,e.primerNombre,e.segundoNombre) Estudiante,ht.idHoraInicio,ht.idHoraFin
+                FROM estudiante e INNER JOIN asignacionBecaInstitucional abi 
+                ON e.idEstudiante = abi.idEstudiante
+                AND abi.idEstudiante= :idEstudiante
+                INNER JOIN solicitudBecaInstitucional sbi
+                ON abi.idSolicitudBecaInstitucional = sbi.idSolicitudBecaInstitucional
+                INNER JOIN horarioTrabajo ht 
+                ON ht.idSolicitudBecaInstitucional=sbi.idSolicitudBecaInstitucional
+                INNER JOIN dia d 
+                ON d.idDia = ht.idDia;
 
+            ";
+            $cmd = $this->conexion->prepare($sql);
+            $cmd->bindParam(':idEstudiante', $idEstudiante);
+            $cmd->execute();
+            $Horario= $cmd->fetchAll();
+            return $Horario;
+        }
         public function listaEstudiante()
         {
         $sqlListaEstudiante ="SELECT  idEstudiante,CONCAT_WS(' ',apellidoPaterno,apellidoMaterno,primerNombre,segundoNombre) AS nombreCompleto from estudiante ;";
@@ -162,7 +182,7 @@
         public function listaEstudiantesAsignacion()
         {
         $sql ="
-        SELECT abi.idAsignacionBecaInstitucional,a.nombre,CONCAT_WS(' ',e.apellidoPaterno,e.apellidoMaterno,e.primerNombre,e.segundoNombre) Estudiante,e.idEstudiante
+        SELECT abi.idAsignacionBecaInstitucional,a.nombre,CONCAT_WS(' ',e.apellidoPaterno,e.apellidoMaterno,e.primerNombre,e.segundoNombre) Estudiante,e.idEstudiante,e.codigoEstudiante
         FROM estudiante e INNER JOIN asignacionBecaInstitucional abi 
         ON e.idEstudiante = abi.idEstudiante
         INNER JOIN  solicitudBecaInstitucional sbi 

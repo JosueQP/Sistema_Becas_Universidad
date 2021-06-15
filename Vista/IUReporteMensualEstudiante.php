@@ -16,6 +16,22 @@ $Reporte = $objLNListaPersonal -> ReporteMensual1($_REQUEST['idEstudiante']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<header class="default-header">
+		<nav class="navbar navbar-expand-lg navbar-light">
+			<div class="container">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+				 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="fa fa-bars"></span>
+				</button>
+
+				<div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
+					<ul class="navbar-nav">
+						<li><a href="ReporteMensual.php">Atras</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
 <body>
 <div class="card " >
                     <p>
@@ -25,7 +41,7 @@ $Reporte = $objLNListaPersonal -> ReporteMensual1($_REQUEST['idEstudiante']);
                              <br> <for>Departamento :</for>  <?php echo($Reporte['departamento'])?>
                              <br> <for>Precio :</for>  <?php echo($Reporte['precio'])?>
                              <br><for>Jefe Departamento :</for>   <?php echo($Reporte['personal'])?>
-                            
+                             <br><for>Horario :</for> <a href="../Vista/IUHorarioEstudiante.php?idEstudiante=<?php  echo $Reporte['idEstudiante']; ?>">Ver</a>
 							<br>
 					</p>
 

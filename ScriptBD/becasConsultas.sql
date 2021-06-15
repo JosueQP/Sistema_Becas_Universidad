@@ -268,3 +268,26 @@ AND pd.idPersonal =4
         AND res.fecha= '2021-02-03'
         INNER JOIN precio pre 
         ON pre.idPrecio = sbi.idPrecio; 
+
+         SELECT res.fecha,res.idAsignacionBecaInstitucional,(res.totalHora*pre.precio) as Total,Sum(res.totalHora*pre.precio) pago
+         FROM registroEntradaSalida res INNER JOIN asignacionBecaInstitucional abi 
+         ON res.idAsignacionBecaInstitucional = abi.idAsignacionBecaInstitucional
+         AND res.fecha BETWEEN '2021-02-01'  AND  '2021-02-26'
+         AND res.idAsignacionBecaInstitucional= 1
+         INNER JOIN solicitudBecaInstitucional sbi 
+         ON sbi.idSolicitudBecaInstitucional = abi.idSolicitudBecaInstitucional 
+         INNER JOIN precio pre 
+         ON pre.idPrecio = sbi.idPrecio ;
+
+------------------------------------------------------------------------------
+-- HORARIO Estudiante =========================================
+SELECT d.dia,CONCAT_WS(' ',e.apellidoPaterno,e.apellidoMaterno,e.primerNombre,e.segundoNombre) Estudiante,ht.idHoraInicio,ht.idHoraFin
+FROM estudiante e INNER JOIN asignacionBecaInstitucional abi 
+ON e.idEstudiante = abi.idEstudiante
+AND abi.idEstudiante=1
+INNER JOIN solicitudBecaInstitucional sbi
+ON abi.idSolicitudBecaInstitucional = sbi.idSolicitudBecaInstitucional
+INNER JOIN horarioTrabajo ht 
+ON ht.idSolicitudBecaInstitucional=sbi.idSolicitudBecaInstitucional
+INNER JOIN dia d 
+ON d.idDia = ht.idDia;

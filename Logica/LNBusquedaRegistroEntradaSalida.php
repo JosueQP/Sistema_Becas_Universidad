@@ -18,6 +18,12 @@
         $ListaEntradaSalida = $this ->objBusquedaRegistroEntradaSalida->ListaEntradaSalidaIABI($idAsignacionBecaInstitucional,$fechaInicio,$fechaFin);
         return $ListaEntradaSalida;
     }
+    public function ListaEntradaSalidaSaldo($idAsignacionBecaInstitucional,$fechaInicio,$fechaFin){
+        $ListaEntradaSalidaSaldo = $this ->objBusquedaRegistroEntradaSalida->ListaEntradaSalidaSaldoTotal($idAsignacionBecaInstitucional,$fechaInicio,$fechaFin);
+        return $ListaEntradaSalidaSaldo;
+    }
+
+    
     public function ListaReporteDiario($idAsignacionBecaInstitucional,$fecha){
         $ListaReporteDiario = $this ->objBusquedaRegistroEntradaSalida->ListaFecha($idAsignacionBecaInstitucional,$fecha);
         return $ListaReporteDiario;

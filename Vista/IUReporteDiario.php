@@ -18,6 +18,7 @@ $Reporte = $ObjListaRegistroEntradaSalida->ListaReporteDiarioDetalle($_REQUEST['
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
                 <p>
 							 <for>Gestion :</for> <?php echo($Reporte['gestion'])?>
@@ -26,7 +27,7 @@ $Reporte = $ObjListaRegistroEntradaSalida->ListaReporteDiarioDetalle($_REQUEST['
                              <br> <for>Departamento :</for>  <?php echo($Reporte['departamento'])?>
                              <br><for>Total :</for>   <?php echo($Reporte['Total'])?>
                              <br><for>Fecha :</for>   <?php echo($Reporte['fecha'])?>
-                            
+                             
 							<br>
 					</p>
 <form>
