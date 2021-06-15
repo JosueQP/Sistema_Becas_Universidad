@@ -1,0 +1,163 @@
+:root{--mainColor:#020071;
+    --secondColor:#ffffdd;
+    --dMainColor:#edcbea;
+    --dSecondColor:#d3de32;
+}
+
+.navbar-tesis .navbar-brand{color:#fff}
+.navbar-tesis .navbar-brand:focus,.navbar-dark .navbar-brand:hover{color:#fff}
+.navbar-tesis .navbar-nav .nav-link{color:rgba(255,255,255,.5)}
+.navbar-tesis .navbar-nav .nav-link:focus,.navbar-dark .navbar-nav .nav-link:hover{color:rgba(255,255,255,.75)}
+.navbar-tesis .navbar-nav .nav-link.disabled{color:rgba(255,255,255,.25)}
+.navbar-tesis .navbar-nav .active>.nav-link,.navbar-dark .navbar-nav .nav-link.active,.navbar-dark .navbar-nav .nav-link.show,.navbar-dark .navbar-nav .show>.nav-link{color:#fff}
+.navbar-tesis .navbar-toggler{color:rgba(255,255,255,.5);border-color:rgba(255,255,255,.1)}
+.navbar-tesis .navbar-text{color:rgba(255,255,255,.5)}
+.navbar-tesis .navbar-text a{color:#fff}
+.navbar-tesis .navbar-text a:focus,.navbar-dark.navbar-text a:hover{color:#fff}
+
+body{
+  background: #606169;
+    /*background-color: var(--dMainColor);*/
+    /*background-image: url("../img/pattern2.jpg");*/
+    /*background: linear-gradient(180deg, rgb(235, 235, 235) 0%, rgb(255, 249, 166) 100%) fixed;*/
+}
+
+.bg-main{
+    background-color: var(--mainColor);
+}
+
+.bg-second{
+  background-color: var(--secondColor);
+}
+
+.bg-s-main{
+    background-color: var(--dMainColor);
+}
+
+.bg-s-second{
+  background-color: var(--dSecondColor);
+}
+
+tbody{
+    background-color: #ffffff00;
+}
+canvas{
+    width: 10rem;
+    height: 10rem;
+    color: white;
+}
+.grafico{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: solid 3px #2b2b2b;
+    padding: 1rem;
+}
+
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #c7c7c7;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track {
+  background: #343a4000;
+  border: 0px none #343a4000;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #666666;
+}
+::-webkit-scrollbar-track:active {
+  background: #666666;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+a{
+  color: var(--mainColor);
+}
+
+.nav-item active{
+  background: var(--mainColor);
+}
+.nav-tabs active{
+  background: var(--mainColor);
+}
+.btn-plus{
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  border-radius: 50%;
+  width: 3.2rem;
+  height: 3.2rem;
+  font-size: xx-large;
+  text-align: center;
+  z-index: 10;
+  padding-top: 0%;
+  font-weight: bolder;
+  text-emphasis: none;
+  border: none;
+}
+button{
+  border: none;
+}
+.prooving{
+  color: #dc354682;
+}
+.btn-plus:hover{
+  color:blue;
+  text-decoration: none;
+}
+/*
+.btn-plus > a:hover{
+}*/
+
+.passInvalid{
+  color: #dc3545;
+  font-size: 13px;
+}
+#message {
+  display:block;
+  color: #000;
+  position: relative;
+  padding: 0px;
+  margin-top: 10px;
+  }
+
+  #message p {
+  padding: 10px 35px;
+  font-size: 18px;
+  }
+
+  .valid {
+  color: green;
+  }
+
+  .valid:before {
+  position: relative;
+  left: -35px;
+  /*content: "✔";*/
+  }
+
+  .invalid {
+  color: #dc3545;
+  }
+
+  .invalid:before {
+  position: relative;
+  left: -35px;
+  /*content: "✖";*/
+  }
+  .reg-input:focus{
+    border: none;
+    border-color: #2b2b2b00;
+    outline: none;
+  }
