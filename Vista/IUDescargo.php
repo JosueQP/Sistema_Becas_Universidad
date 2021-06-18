@@ -3,17 +3,10 @@ require_once("../LogicaFinanza/LNEstudianteBusquedaFinanza.php");
 $ObjEstudianteBusquedaFinanza = new LNBusquedaEstudianteFinanza();
 //$_REQUEST['codigoEstudiante'];
 $codigoEstudiante =  $_REQUEST['codigoEstudiante'];
-$ganancia =  $_REQUEST['Ganancia'];
-echo $codigoEstudiante;
-echo $ganancia;
-$idContrato =  $_REQUEST['idContrato'];
-echo $idContrato;
 $lista=$ObjEstudianteBusquedaFinanza->EstadoCuenta($codigoEstudiante );
+//var_dump($lista);
 $listaCuenta=$ObjEstudianteBusquedaFinanza->EstadoCuentaEstudiante($codigoEstudiante );
 
-$dtz = new DateTimeZone("America/Caracas");
-$dt = new DateTime ("now",$dtz);
-$fechaActual = $dt -> format("Y-m-d");
 //echo $fechaActual;
 //$fecha = DateZone 
 //var_dump($lista);
@@ -50,12 +43,7 @@ $fechaActual = $dt -> format("Y-m-d");
 							 <br> <for>Carrera :</for>  <?php echo($listaCuenta['carrera'])?>
                              <br><for>Monto Total :</for>   <?php echo($listaCuenta['montoTotal'])?>
                              <br> <for>Saldo :</for>  <?php echo($saldo = $listaCuenta['saldo'])?>
-                            <?php $montoPagar=$saldo-$ganancia; 
-                            $pagar = $ObjEstudianteBusquedaFinanza -> actualizarSaldo($idContrato,$montoPagar);
-                           
-                            $MandarDatoInsertar = $ObjEstudianteBusquedaFinanza -> InsertarSaldo($idContrato,$fechaActual,$ganancia);
-
-                            ?>
+                            
 
 							<br>
 					</p>

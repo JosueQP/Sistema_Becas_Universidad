@@ -47,7 +47,7 @@
                 $cmd->bindParam(':fechaFin', $fechaFin);
                 $cmd->execute();
                 $Lista=$cmd->fetchAll();
-                //var_dump ($validado);
+                //var_dump ($Lista);
                 return $Lista;
                  
      }
@@ -70,7 +70,7 @@
               $cmd->bindParam(':fechaFin', $fechaFin);
               $cmd->execute();
               $Lista=$cmd->fetch();
-              //var_dump ($validado);
+              //var_dump ($Lista);
               return $Lista;
                
    }
@@ -96,7 +96,6 @@
          AND res.fecha= :fecha
          INNER JOIN precio pre 
          ON pre.idPrecio = sbi.idPrecio; 
-
        
        "; 
                $cmd = $this->conexion->prepare($sql);
@@ -104,7 +103,7 @@
                 $cmd->bindParam(':fecha', $fecha);
                 $cmd->execute();
                 $Lista=$cmd->fetchAll();
-                //var_dump ($validado);
+                var_dump ($Lista);
                 return $Lista;
                  
      }
@@ -130,7 +129,6 @@
         AND res.fecha= :fecha
         INNER JOIN precio pre 
         ON pre.idPrecio = sbi.idPrecio; 
-
       
       "; 
               $cmd = $this->conexion->prepare($sql);

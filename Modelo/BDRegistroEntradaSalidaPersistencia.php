@@ -35,32 +35,29 @@ public function registroEntrada($idAsignacionBecaInstitucional,$fecha,$horaInici
        return 0;
    }
 }//end function
-public function registroSalida($idAsignacionBecaInstitucional,$horaFin,$horaInicio) 
-    {
-   $sqlRegistroSalida= " 
-                           UPDATE registroEntradaSalida
-                           SET horaFin = :horaFin,totalHora = TIMEDIFF(:horaFin,:horaInicio)
-                           WHERE idAsignacionBecaInstitucional = :idBecaInstitucional;
-                         ";    
-
-   try{
-           $cmd = $this->conexion->prepare($sqlRegistroSalida);
-           $cmd->bindParam(':idAsignacionBecaInstitucional', $idAsignacionBecaInstitucional);
-           $cmd->bindParam(':horaFin', $horaFin);
-           $cmd->bindParam(':horaInicio', $horaInicio);
-           if($cmd->execute()){
-               echo "se hizo el update";
-               return 1;   
-           }else{
-               echo "no se hizo el update";
-               return 0;
-           }
-   }catch(PDOException $e){
-       echo 'ERROR: No se logro realizar la nueva inserción - '.$e->getMessage();
-       exit();
-       return 0;
-   }
-   
+public function registroSalida($idRegistroEntradaSalida,$horaFin) 
+{   echo "Datos a actualizar:  idAsignacionBecaInstitucional ".$idAsignacionBecaInstitucional."Hora Fin:  " .$horaFin."Hora Inicio:  ".$horaInicio;
+    $sqlRegistroSalida= " 
+                            UPDATE registroEntradaSalida
+                            SET horaFin = :horaFin 
+                            WHERE idRegistroEntradaSalida = :idRegistroEntradaSalida;
+                        ";
+    try{
+            $cmd = $this->conexion->prepare($sqlRegistroSalida);
+            $cmd->bindParam(':idRegistroEntradaSalida', $idRegistroEntradaSalida);
+            $cmd->bindParam(':horaFin', $horaFin);
+            if($cmd->execute()){
+                echo "se hizo el update";
+                return 1;   
+            }else{
+                return 0;
+                echo "No se hizo el update";
+            }
+    }catch(PDOException $e){
+        echo 'ERROR: No se logro realizar la actualización - '.$e->getMessage();
+        exit();
+        return 0;
+    }
 }//end function
 
 //public function updateSalida($idAsignacionBecaInstitucional,$horaFin)

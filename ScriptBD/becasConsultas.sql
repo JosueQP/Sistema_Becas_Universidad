@@ -291,3 +291,80 @@ INNER JOIN horarioTrabajo ht
 ON ht.idSolicitudBecaInstitucional=sbi.idSolicitudBecaInstitucional
 INNER JOIN dia d 
 ON d.idDia = ht.idDia;
+
+                        UPDATE registroEntradaSalida
+                            SET horaFin = '00:00:20' 
+                            WHERE idRegistroEntradaSalida = 48
+
+         SELECT res.fecha,res.idAsignacionBecaInstitucional,(res.totalHora*pre.precio) as Total
+         FROM registroEntradaSalida res INNER JOIN asignacionBecaInstitucional abi 
+         ON res.idAsignacionBecaInstitucional = abi.idAsignacionBecaInstitucional
+         AND res.fecha BETWEEN '2021-02-01'  AND  '2021-02-26'
+         AND res.idAsignacionBecaInstitucional= 1
+         INNER JOIN solicitudBecaInstitucional sbi 
+         ON sbi.idSolicitudBecaInstitucional = abi.idSolicitudBecaInstitucional 
+         INNER JOIN precio pre 
+         ON pre.idPrecio = sbi.idPrecio ;
+
+   SELECT res.fecha,res.idAsignacionBecaInstitucional,Sum(res.totalHora*pre.precio) as pago
+       FROM registroEntradaSalida res INNER JOIN asignacionBecaInstitucional abi 
+       ON res.idAsignacionBecaInstitucional = abi.idAsignacionBecaInstitucional
+       AND res.fecha BETWEEN '2021-02-01'  AND  '2021-02-26'
+       AND res.idAsignacionBecaInstitucional= 1
+       INNER JOIN solicitudBecaInstitucional sbi 
+       ON sbi.idSolicitudBecaInstitucional = abi.idSolicitudBecaInstitucional 
+       INNER JOIN precio pre 
+       ON pre.idPrecio = sbi.idPrecio ;
+
+            SELECT CONCAT_WS(' ',e.apellidoPaterno,e.apellidoMaterno,e.primerNombre,e.segundoNombre)  as Estudiante,
+            d.nombre Departamento, a.nombre Area, res.fecha,res.horaInicio HoraEntrada, res.horaFin HoraSalida,
+            res.totalHora as HorasTrabajadas  
+            FROM gestion g
+            INNER JOIN solicitudBecaInstitucional sbi
+            ON g.idGestion = sbi.idGestion
+            AND g.activo=1
+            INNER JOIN asignacionBecaInstitucional abi 
+            ON sbi.idSolicitudBecaInstitucional = abi.idSolicitudBecaInstitucional
+            AND abi.idAsignacionBecaInstitucional=1
+            INNER JOIN estudiante e
+            ON abi.idEstudiante = e.idEstudiante
+            INNER JOIN area a 
+            ON sbi.idArea = a.idArea 
+            INNER JOIN departamento d 
+            ON a.idDepartamento = d.idDepartamento
+            INNER JOIN registroEntradaSalida res
+            on abi.idAsignacionBecaInstitucional=res.idAsignacionBecaInstitucional
+            and res.fecha BETWEEN '2021-02-01'  and '2021-02-26';
+
+
+                SELECT res.fecha,res.idAsignacionBecaInstitucional,Sum(res.totalHora*pre.precio) as pago
+                        FROM registroEntradaSalida res INNER JOIN asignacionBecaInstitucional abi 
+                        ON res.idAsignacionBecaInstitucional = abi.idAsignacionBecaInstitucional
+                        AND res.fecha BETWEEN '2021-02-01'  AND  '2021-02-26'
+                        AND res.idAsignacionBecaInstitucional= 1
+                        INNER JOIN solicitudBecaInstitucional sbi 
+                        ON sbi.idSolicitudBecaInstitucional = abi.idSolicitudBecaInstitucional 
+                        INNER JOIN precio pre 
+                        ON pre.idPrecio = sbi.idPrecio ;
+
+                    SELECT res.fecha,res.idAsignacionBecaInstitucional,(res.totalHora*pre.precio) as Total
+                        FROM registroEntradaSalida res INNER JOIN asignacionBecaInstitucional abi 
+                        ON res.idAsignacionBecaInstitucional = abi.idAsignacionBecaInstitucional
+                        AND res.fecha BETWEEN '2021-02-01'  AND  '2021-02-26'
+                        AND res.idAsignacionBecaInstitucional= 1
+                        INNER JOIN solicitudBecaInstitucional sbi 
+                        ON sbi.idSolicitudBecaInstitucional = abi.idSolicitudBecaInstitucional 
+                        INNER JOIN precio pre 
+                        ON pre.idPrecio = sbi.idPrecio ;
+
+
+         SELECT f.nombre as facultad,ca.nombre as carrera ,c.montoTotal,c.saldo,s.fecha,s.tipoPago,s.montoParcial
+            FROM estudiante e INNER JOIN contrato c 
+            ON c.idEstudiante = e.idEstudiante
+            AND e.codigoEstudiante= 10
+            INNER JOIN saldo s 
+            ON s.idContrato=c.idContrato
+            INNER JOIN carrera ca 
+            ON ca.idCarrera=c.idCarrera
+            INNER JOIN facultad f 
+            ON f.idFacultad=ca.idFacultad;

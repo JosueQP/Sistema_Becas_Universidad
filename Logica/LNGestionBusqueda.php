@@ -11,7 +11,7 @@
 			$this->objGestionBusqueda = new GestionBusqueda();
         }
   
-        public  function gestionActiva(){
+        public  function logicaGestionActiva(){
             $gestionActiva =$this->objGestionBusqueda->gestionActiva();
             return $gestionActiva;
             }

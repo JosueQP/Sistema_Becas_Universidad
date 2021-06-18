@@ -57,7 +57,7 @@ INSERT INTO contrato VALUES (NULL,6,3,5000,5000);
 INSERT INTO contrato VALUES (NULL,8,8,6000,4500);
 
 -- saldo
-INSERT INTO saldo VALUES (NULL,1,'2021-02-06',2500,'propio');
+INSERT INTO saldo VALUES (NULL,1,'2021-02-06',2500,'becaInstitucional');
 INSERT INTO saldo VALUES (NULL,2,'2021-04-02',5000,'becaInstitucional');
 INSERT INTO saldo VALUES (NULL,3,'2021-03-05',4500,'becaInstitucional');
 

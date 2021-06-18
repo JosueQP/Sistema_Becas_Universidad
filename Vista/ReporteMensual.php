@@ -20,11 +20,14 @@ header('Content-Type: text/html; charset=UTF-8');
      // $listaEstudiante=$estudiante->ReporteMensual1($_REQUEST['idEstudiante']);
 
       $listaEstudianteAsignacion=$estudiante->LogicaEstudianteAsignacion();
+      //var_dump($listaEstudianteAsignacion);
 			//$dato=$_POST['usuario'];
 			//echo  $idPersonal;
 			//var_dump($idPersonal)
       //var_dump($listaEstudianteAsignacion);
-           
+      require ("../Logica/LNGestionBusqueda.php");
+      $gestion= new LNGestionBusqueda();
+      $gestiones = $gestion->logicaGestiones();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,9 +36,9 @@ header('Content-Type: text/html; charset=UTF-8');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Lista Estudiante</title>
+    <title>Estudiante Asignacion </title>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Lista Solicitud</a>
+  <a class="navbar-brand" href="#"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -59,10 +62,23 @@ header('Content-Type: text/html; charset=UTF-8');
 </nav>
 </head>
 <body>
+<form>
 <div class="main-boxes">
         <div class="main-header">
-            <h2>Lista Estudiante </h2>
+            <h2>Estudiante Beca Institucional </h2>
         </div>
+        <p>
+        <th>Gestion</th>
+                            <td>
+                            
+                                <select name="idGestion" id="idGestion">
+                                <?php foreach ($gestiones as $lista): ?>
+                                <option value="<?php echo($lista['idGestion'])?>"><?php echo($lista['nombre'])?></option>
+                                <?php endforeach ;
+
+                            ?>
+                            </select>
+        </p>
         <div class="container"> 
             <table border="1">
                 <tr>
@@ -80,12 +96,13 @@ header('Content-Type: text/html; charset=UTF-8');
                     <td ><?php echo $Listas['nombre']?></td>
                     <td ><?php echo $Listas['Estudiante']?></td>
                     <td><a href="../Vista/IUReporteMensualEstudiante.php?idEstudiante=<?php  echo $Listas['idEstudiante']; ?>">Ver</a></td>
-                    <td><a href="../Vista/IUEstadoDeCuenta.php?codigoEstudiante=<?php  echo $Listas['codigoEstudiante']; ?>">EstadoDeCuenta</a></td>
+                    <td><a href="../Vista/IUDescargo.php?codigoEstudiante=<?php  echo $Listas['codigoEstudiante']; ?>">EstadoDeCuenta</a></td>
                 </tr>
                 <?php }?>
             </table>
         </div>
 
     </div>
+  </form>
 </body>
 </html>

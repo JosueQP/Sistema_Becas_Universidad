@@ -10,13 +10,27 @@ ON es.idEstudiante= con.idEstudiante
 AND es.codigoEstudiante='10';
 
 
-SELECT f.nombre,ca.nombre,c.montoTotal,c.saldo,s.fecha,s.tipoPago,s.montoParcial
+SELECT f.nombre,ca.nombre,c.montoTotal,c.saldo,s.fecha,s.tipoPago,s.montoParcial,c.idContrato
 FROM estudiante e INNER JOIN contrato c 
 ON c.idEstudiante = e.idEstudiante
-AND e.codigoEstudiante=30
+AND c.idContrato = 1
 INNER JOIN saldo s 
 ON s.idContrato=c.idContrato
 INNER JOIN carrera ca 
 ON ca.idCarrera=c.idCarrera
 INNER JOIN facultad f 
 ON f.idFacultad=ca.idFacultad;
+
+         SELECT f.nombre as facultad,ca.nombre as carrera ,c.montoTotal,c.saldo,s.fecha,s.tipoPago,s.montoParcial
+            FROM estudiante e INNER JOIN contrato c 
+            ON c.idEstudiante = e.idEstudiante
+            INNER JOIN saldo s 
+            ON s.idContrato=c.idContrato
+            AND c.idContrato=1
+            INNER JOIN carrera ca 
+            ON ca.idCarrera=c.idCarrera
+            INNER JOIN facultad f 
+            ON f.idFacultad=ca.idFacultad;
+
+
+          

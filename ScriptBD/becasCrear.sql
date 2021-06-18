@@ -160,6 +160,7 @@ fecha DATE NOT NULL,
 horaInicio TIME,
 HoraFin TIME,
 totalHora double,
+descargo bool,
 foreign KEY (idAsignacionBecaInstitucional) references asignacionBecaInstitucional(idAsignacionBecaInstitucional) 
 )ENGINE=InnoDB;
 

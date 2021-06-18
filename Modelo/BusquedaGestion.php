@@ -15,7 +15,7 @@
             ";
             $cmd = $this->conexion->prepare($datoGestion);
             $cmd->execute();
-            $gestion = $cmd->fetch();
+            $gestion = $cmd->fetchAll();
             //var_dump  ($gestion);
             return $gestion;
         }
@@ -23,7 +23,7 @@
         public function Gestiones()
         {   //realizando la consulta
             $datoGestion = "
-            select * from gestion where activo=1;
+            select * from gestion;
             ";
             $cmd = $this->conexion->prepare($datoGestion);
             $cmd->execute();

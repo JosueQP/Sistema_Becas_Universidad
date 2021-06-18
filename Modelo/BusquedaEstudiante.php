@@ -105,7 +105,7 @@
         $sqlReporteMensual = "
                         SELECT  CONCAT_WS(' ',e.apellidoPaterno,e.apellidoMaterno,e.primerNombre,
                         e.segundoNombre) estudiante,e.idEstudiante,g.nombre as gestion,d.nombre as departamento,a.nombre as area,pre.precio, CONCAT_WS(' ',p.apellidoPaterno,p.apellidoMaterno,p.primerNombre,
-                        p.segundoNombre) personal,abi.idAsignacionBecaInstitucional
+                        p.segundoNombre) personal,abi.idAsignacionBecaInstitucional,e.codigoEstudiante
                         FROM rol r INNER JOIN personal p 
                         ON r.idRol = P.idRol
                         INNER JOIN personalDepartamento pd 

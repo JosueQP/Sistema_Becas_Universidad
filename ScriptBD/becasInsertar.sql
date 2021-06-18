@@ -315,28 +315,28 @@ VALUES (2,'2021-02-30','14:00','17:00',2.30);
 -- ==================================================================================================
 -- idEstudiante: 8
 -- Martes
-INSERT INTO registroEntradaSalida(idAsignacionBecaInstitucional,fecha,horaInicio, horaFin, totalHora) 
-VALUES (3,'2021-05-03','12:00','16:00',4.0);
+INSERT INTO registroEntradaSalida(idAsignacionBecaInstitucional,fecha,horaInicio, horaFin, totalHora,descargo) 
+VALUES (3,'2021-05-03','12:00','16:00',4.0,);
 -- Jueves
-INSERT INTO registroEntradaSalida(idAsignacionBecaInstitucional,fecha,horaInicio, horaFin, totalHora) 
+INSERT INTO registroEntradaSalida(idAsignacionBecaInstitucional,fecha,horaInicio, horaFin, totalHora,descargo) 
 VALUES (3,'2021-05-05','19:00','22:00',3.0);
 -- Martes
-INSERT INTO registroEntradaSalida(idAsignacionBecaInstitucional,fecha,horaInicio, horaFin, totalHora) 
+INSERT INTO registroEntradaSalida(idAsignacionBecaInstitucional,fecha,horaInicio, horaFin, totalHora,descargo) 
 VALUES (3,'2021-05-10','12:00','16:00',4.0);
 -- Jueves
-INSERT INTO registroEntradaSalida(idAsignacionBecaInstitucional,fecha,horaInicio, horaFin, totalHora) 
+INSERT INTO registroEntradaSalida(idAsignacionBecaInstitucional,fecha,horaInicio, horaFin, totalHora,descargo) 
 VALUES (3,'2021-05-12','19:00','22:00',3.0);
 -- Martes
-INSERT INTO registroEntradaSalida(idAsignacionBecaInstitucional,fecha,horaInicio, horaFin, totalHora) 
+INSERT INTO registroEntradaSalida(idAsignacionBecaInstitucional,fecha,horaInicio, horaFin, totalHora,descargo) 
 VALUES (3,'2021-05-17','12:00','16:00',4.0);
 -- Jueves
-INSERT INTO registroEntradaSalida(idAsignacionBecaInstitucional,fecha,horaInicio, horaFin, totalHora) 
+INSERT INTO registroEntradaSalida(idAsignacionBecaInstitucional,fecha,horaInicio, horaFin, totalHora,descargo) 
 VALUES (3,'2021-05-19','19:00','22:00',3.0);
 -- Martes
-INSERT INTO registroEntradaSalida(idAsignacionBecaInstitucional,fecha,horaInicio, horaFin, totalHora) 
+INSERT INTO registroEntradaSalida(idAsignacionBecaInstitucional,fecha,horaInicio, horaFin, totalHora,descargo) 
 VALUES (3,'2021-05-24','12:00','16:00',4.0);
 -- Jueves
-INSERT INTO registroEntradaSalida(idAsignacionBecaInstitucional,fecha,horaInicio, horaFin, totalHora) 
+INSERT INTO registroEntradaSalida(idAsignacionBecaInstitucional,fecha,horaInicio, horaFin, totalHora,descargo) 
 VALUES (3,'2021-05-26','19:00','22:00',3.0);
  
 

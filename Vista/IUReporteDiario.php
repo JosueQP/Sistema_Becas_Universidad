@@ -18,7 +18,7 @@ $Reporte = $ObjListaRegistroEntradaSalida->ListaReporteDiarioDetalle($_REQUEST['
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-
+<h1>Reporte Diario</h1>
 <body>
                 <p>
 							 <for>Gestion :</for> <?php echo($Reporte['gestion'])?>

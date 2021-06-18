@@ -33,23 +33,24 @@ $Reporte = $objLNListaPersonal -> ReporteMensual1($_REQUEST['idEstudiante']);
 		</nav>
 	</header>
 <body>
+<h1>Reporte Mensual</h1>
 <div class="card " >
                     <p>
 							 <for>Gestion :</for> <?php echo($Reporte['gestion'])?>
 							 <br> <for>Estudiante :</for>  <?php echo($Reporte['estudiante'])?>
-                             <br><for>Area :</for>   <?php echo($Reporte['area'])?>
                              <br> <for>Departamento :</for>  <?php echo($Reporte['departamento'])?>
-                             <br> <for>Precio :</for>  <?php echo($Reporte['precio'])?>
+                             <br><for>Area :</for>   <?php echo($Reporte['area'])?>
+                             <br> <for>Precio Hora :</for>  <?php echo($Reporte['precio'])?>
                              <br><for>Jefe Departamento :</for>   <?php echo($Reporte['personal'])?>
                              <br><for>Horario :</for> <a href="../Vista/IUHorarioEstudiante.php?idEstudiante=<?php  echo $Reporte['idEstudiante']; ?>">Ver</a>
+
 							<br>
 					</p>
 
                     </div> 
             <form action="../Vista/IUBuscarReporteMes.php" method="post" name="ReporteMes">
             <input type="hidden" name="idAsignacionBecaInstitucional" value="<?php echo($Reporte['idAsignacionBecaInstitucional'])?>">
-           
-
+            <input type="hidden" name="idEstudiante" value="<?php echo($Reporte['idEstudiante'])?>">
                 <table border = 1>
                 <tr>
                     <td><input type="date" name="fechaInicio" id="fechaInicio" placeholder="Ingresar La  Fecha Inicio" ></td>
