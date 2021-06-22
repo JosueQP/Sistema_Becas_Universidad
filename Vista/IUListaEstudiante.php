@@ -9,6 +9,9 @@ if($estado=="todo"){
 }else{
     $activo=$estado;
 }
+require ("../Logica/LNPersonalBusqueda.php");
+$usuario= new LNPersonalBusqueda();
+$datosUsuario=$usuario->rolPersonal($_SESSION['usuario']);
 $Listado = $objLNListaPersonal->busquedaEstudiante($_REQUEST['nombre'],$_REQUEST['primerNombre'],$_REQUEST['segundoNombre'],$_REQUEST['apellidoPaterno'],$_REQUEST['apellidoMaterno'],$_REQUEST['ci'],$activo);
 ?>
 <!DOCTYPE html>
@@ -32,14 +35,39 @@ $Listado = $objLNListaPersonal->busquedaEstudiante($_REQUEST['nombre'],$_REQUEST
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="IUListaEstudiante.php">Estudiante <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="IUListaPersonal.php">Personal</a>
-      </li>
+    <li>
+						<form action="IUListaEstudiante.php" method="post"> 
+						<input type="hidden" name="idPersonal" value="<?php echo $datosUsuario['idPersonal']?>">
+						<input type="hidden" name="primerNombre" value="">
+						<input type="hidden" name="segundoNombre" value=""> 
+						<input type="hidden" name="apellidoPaterno" value="">
+						<input type="hidden" name="apellidoMaterno" value="">
+						<input type="hidden" name="carrera" value="">
+						<input type="hidden" name="nombre" value="">
+						<input type="hidden" name="ci" value="">
+						<input type="hidden" name="activo" value="todo">
+						<input type="hidden" name="buscar" value="buscar">
+						<input type="submit" value="Estudiante" class="enviar">
+						</form>
+						</li> 
+  		<li>
+						<form action="IUListaPersonal.php" method="post"> 
+						<input type="hidden" name="idPersonal" value="<?php echo $datosUsuario['idPersonal']?>">
+						<input type="hidden" name="primerNombre" value="">
+						<input type="hidden" name="segundoNombre" value=""> 
+						<input type="hidden" name="apellidoPaterno" value="">
+						<input type="hidden" name="apellidoMaterno" value="">
+						<input type="hidden" name="ci" value="">
+						<input type="hidden" name="activo" value="todo">
+						<input type="hidden" name="buscar" value="buscar">
+						<input type="submit" value="personal" class="enviar">
+						</form>
+						</li>
     </ul>
-    
+        <?php echo($datosUsuario['nombreUsuario']);
+          echo '<br>';
+          echo($datosUsuario['departamento']);
+    ?>
   </div>
 </nav>
   </head>
@@ -58,6 +86,7 @@ $Listado = $objLNListaPersonal->busquedaEstudiante($_REQUEST['nombre'],$_REQUEST
         </form>
     
     </div>
+    <button><a href="IURegistrarEstudiante.php">RegistrarEstudiante</a></button>
     <div class="main-boxes">
         <div class="main-header">
             <h2>Lista Estudiante</h2>

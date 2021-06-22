@@ -13,6 +13,8 @@ else{
 		//echo "pass  .......... ".$_POST['contrasenia'];
 		$_SESSION['usuario']=$user;
 		$_SESSION['contrasenia']=$pass;
+
+	
 		//$datosPersonal1=$usuario->datosPersonal($user);
 
 		$existeUsuario=$usuario->verificarUsuarioPersonal($_POST['usuario']);
@@ -21,7 +23,7 @@ else{
 		//var_dump ($existeContrasenia);
 
 		$datosUsuario=$usuario->rolPersonal($_SESSION['usuario']);
-
+	
 		if($existeUsuario){
 			//echo "existe usuario";
 			//echo "pass form:           ".$pass."<br>";
@@ -29,7 +31,8 @@ else{
 			if(password_verify($pass,$existeUsuario['contrasenia'])){
 				//echo "Contrasenia valida del usuario";
 				if($existeUsuario['activo']=='1'){
-					
+					$_SESSION['nombreUsuario'] = $datosUsuario['nombreUsuario'];
+					$_SESSION['idPersonal']=$datosUsuario['idPersonal'];
 						    
 //}	//end else del primer IF	
 ?>
@@ -46,69 +49,21 @@ else{
 			$opc = $existeUsuario['idRol'];
 			switch ($opc) {
 				case 1:
-				?> <script>
-					window.onload=function(){
-					// Una vez cargada la página, el formulario se enviara automáticamente.
-					document.forms["miformulario"].submit();
-				}
-				</script>
-			<div class="sub-container">
-			<div class="sub-header"><h1>Bienvenido <br><br><?php echo $datosUsuario['nombreUsuario']?></h1><br></div>
-			<form action="../Vista/IUJefeGestionTalentoHumano.php" method="post" name="miformulario">
-			<label for="user" name="user"></label>
-			<input type="hidden" name="user" value="<?php echo $datosUsuario['idPersonal']?>"><br>
-			  <div class="button">
-			<input type="submit" value="Continuar">
-	</div> 
-			 </form>
-			</div>
-
+					header ("Location:../Vista/IUJefeGestionTalentoHumano.php");
+				?> 
+			
 			<?php
 			break;
 
 			case 2:
-			?>
 
-	
-		<script>
-			window.onload=function(){
-			// Una vez cargada la página, el formulario se enviara automáticamente.
-			document.forms["miformulario"].submit();
-			}
-			</script>
-			<div class="sub-container">
-			<div class="sub-header"><h1>Bienvenido <br><br><?php echo $datosUsuario['nombreUsuario']?></h1><br></div>
-			<form action="../Vista/IUJefeDepartamento.php" method="post" name="miformulario">
-			<label for="user" name="user"></label>
-			<input type="hidden" name="user" value="<?php echo $datosUsuario['idPersonal']?>"><br>
-			  <div class="button">
-			<input type="submit" value="Continuar">
-	</div> 
-			 </form>
-		</div>
+				header ("Location:../Vista/IUJefeDepartamento.php");
+			?>
 		<?php
 
 			break;
 		case 4:
-		?>
-		<script>
-			window.onload=function(){
-			// Una vez cargada la página, el formulario se enviara automáticamente.
-			document.forms["miformulario"].submit();
-		}
-		</script>
-		<div class="sub-container">
-		<div class="sub-header"><h1>Bienvenido <br><br><?php echo $datosUsuario['nombreUsuario']?></h1><br></div>
-					<form action="../Vista/IUencargadoFinanzas.php" method="post" name="miformulario">
-					<label for="user" name="user"></label>
-					<input type="hidden" name="user" value="<?php echo $datosUsuario['idPersonal']?>"><br>
-					<div class="button">
-					<input type="submit" value="Continuar">
-			</div> 
-					</form>
-		</div>
-		<?php
-
+			header ("Location:../Vista/IUencargadoFinanzas.php");
 			break;
 		}
 		?>

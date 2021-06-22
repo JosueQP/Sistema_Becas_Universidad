@@ -13,9 +13,8 @@ class LNRegistroEntradaSalidaPersistencia {
         return $this -> objRegistroEntradaSalidaPersistencia->registroEntrada($idAsignacionBecaInstitucional,$fecha,$horaInicio);
 
     }
-    public function registroSalida($idAsignacionBecaInstitucional,$horaFin, $horaInicio){
-        return $this -> objRegistroEntradaSalidaPersistencia->registroSalida($idAsignacionBecaInstitucional,$horaFin, $horaInicio);
-
+    public function registroSalida($idAsignacionBecaInstitucional,$horaFin,$horaInicio){
+        return $this->objRegistroEntradaSalidaPersistencia->registroSalida($idAsignacionBecaInstitucional,$horaFin,$horaInicio);
     }
 }
 ?>

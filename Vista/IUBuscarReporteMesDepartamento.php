@@ -52,12 +52,6 @@ $envioId = $idContrato['idContrato'];
 					</p>	
 <body>
     <?php echo "Monto Total:   ".$listaRegistroEntradaSalidaSaldo['pago'];?>
-    <br>    
-    <form action="../Vista/IUEstadoDeCuenta.php" name="oculto" method="POST">
-    <input type="hidden" name="Ganancia" value="<?php echo($listaRegistroEntradaSalidaSaldo['pago'])?>"  > 
-    <input type="hidden" name="codigoEstudiante" value="<?php echo($Reporte['codigoEstudiante'])?>">
-    <input type="hidden" name="idContrato" value="<?php echo($envioId)?>">
-    <input type="submit" value="Descargar Saldo">
  <table border="1">
 
         <tr>

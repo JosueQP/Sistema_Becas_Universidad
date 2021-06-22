@@ -17,7 +17,6 @@
          $listaConsulta = $cmd->fetchAll();
         return $listaConsulta;
        }
-        pu
     
     
     

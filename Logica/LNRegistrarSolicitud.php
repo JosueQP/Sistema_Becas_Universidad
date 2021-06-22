@@ -1,6 +1,8 @@
 <?php
 require_once("../Modelo/BDSolicitudPersistencia.php");
-    
+    /*echo $_REQUEST['idGestion'];
+    echo $_REQUEST['idArea'];
+    echo $_REQUEST['idPrecio'];*/
     $objetoSolicitudPersistencia = new solicitudPersistencia();
 
     $exitoRegistro = $objetoSolicitudPersistencia->registrarSolicitud(
@@ -11,7 +13,8 @@ require_once("../Modelo/BDSolicitudPersistencia.php");
                                                        
                                                         );
     if($exitoRegistro==1){
-    	echo "exito registro";;
+    	echo "exito registro";
+      header("Location:../Vista/IUHorarioTrabajo.php");
       
     }else{
       echo "error al registrar";
@@ -19,8 +22,4 @@ require_once("../Modelo/BDSolicitudPersistencia.php");
    
 ?>
 
-<br>
-<?php
-
-header('Location:../Vista/iuHorarioTrabajo.php')?>
 

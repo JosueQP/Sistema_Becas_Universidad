@@ -10,7 +10,8 @@
     $gestion = new LNGestionBusqueda();
      $listaDepartamento=$departamento->logicaListaDepartamento();
      $listaPersonalU=$usuario->LogicaListaPersonalU();
-     $listaGestion=$gestion->gestionActiva();
+     $listaGestion=$gestion->logicaGestionActiva1();
+     var_dump($listaGestion);
      $listaGestiones=$gestion->logicaGestiones();
     //Si existe la sesión "cliente"..., la guardamos en una variable.
    /* if (isset($_SESSION['usuario'])){
@@ -34,7 +35,7 @@
         <th>Gestion</th>
                 <td>
                     <select name="idGestion" id="idGestion">
-                      <?php foreach ($listaGestiones as $lista): ?>
+                      <?php foreach ($listaGestion as $lista): ?>
                       <option value="<?php echo($lista['idGestion'])?>"><?php echo($lista['nombre'])?></option>
                     <?php endforeach ;
 

@@ -32,6 +32,10 @@
         $ListaReporteDiarioDetalle = $this ->objBusquedaRegistroEntradaSalida->ListaFechaDetalle($idAsignacionBecaInstitucional,$fecha);
         return $ListaReporteDiarioDetalle;
     }
-    
+    public function ultimoRegistro()
+		{   
+			$ultimoRegistro = $this->objBusquedaRegistroEntradaSalida->ultimoRegistro();
+			return $ultimoRegistro;
+		}
 }
 ?>

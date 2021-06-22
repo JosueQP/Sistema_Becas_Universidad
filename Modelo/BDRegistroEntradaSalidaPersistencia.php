@@ -35,17 +35,18 @@ public function registroEntrada($idAsignacionBecaInstitucional,$fecha,$horaInici
        return 0;
    }
 }//end function
-public function registroSalida($idRegistroEntradaSalida,$horaFin) 
-{   echo "Datos a actualizar:  idAsignacionBecaInstitucional ".$idAsignacionBecaInstitucional."Hora Fin:  " .$horaFin."Hora Inicio:  ".$horaInicio;
+public function registroSalida($idAsignacionBecaInstitucional,$horaFin,$totalHora) 
+{   //echo "Datos a actualizar:  idAsignacionBecaInstitucional ".$idAsignacionBecaInstitucional."Hora Fin:  " .$horaFin."Hora Inicio:  ".$horaInicio;
     $sqlRegistroSalida= " 
                             UPDATE registroEntradaSalida
-                            SET horaFin = :horaFin 
-                            WHERE idRegistroEntradaSalida = :idRegistroEntradaSalida;
+                            SET horaFin = :horaFin, totalHora = :totalHora
+                            WHERE idAsignacionBecaInstitucional = :idAsignacionBecaInstitucional;
                         ";
     try{
             $cmd = $this->conexion->prepare($sqlRegistroSalida);
-            $cmd->bindParam(':idRegistroEntradaSalida', $idRegistroEntradaSalida);
+            $cmd->bindParam(':idAsignacionBecaInstitucional', $idAsignacionBecaInstitucional);
             $cmd->bindParam(':horaFin', $horaFin);
+            $cmd->bindParam(':totalHora', $totalHora);
             if($cmd->execute()){
                 echo "se hizo el update";
                 return 1;   
@@ -58,13 +59,21 @@ public function registroSalida($idRegistroEntradaSalida,$horaFin)
         exit();
         return 0;
     }
-}//end function
+}//end f
 
-//public function updateSalida($idAsignacionBecaInstitucional,$horaFin)
-  //  {
-      
-
-   //}
+public function MDLverificarFechaEntradaSalida($idAsignacionBecaInstitucional, $fechaActual){
+    $sqlVerificarFecha=" 
+        select fecha,idasignacionbecainstitucional,horaInicio,horaFin 
+        from registroentradasalida 
+        where fecha=:fechaActual and idAsignacionBecaInstitucional=:idAsignacionBecaInstitucional;
+        "; 
+    $cmd = $this->conexion->prepare($sqlVerificarFecha);
+            $cmd->bindParam(':idAsignacionBecaInstitucional', $idAsignacionBecaInstitucional);
+            $cmd->bindParam(':fechaActual', $fechaActual);
+            $cmd->execute();
+            $validado=$cmd->fetchAll();
+            return $validado;
+}//endfunction
   
   }
 ?>

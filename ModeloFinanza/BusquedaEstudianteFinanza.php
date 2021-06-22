@@ -102,7 +102,7 @@
         }//end function
 
         public function InsertSaldo($idContrato,$fechaActual,$ganancia) 
-        {  echo "Datos a actualizar:  idAsignacionBecaInstitucional ".$idContrato."Hora Fin:  " .$fechaActual."Hora Inicio:  ".$ganancia;
+        {  //echo "Datos a actualizar:  idAsignacionBecaInstitucional ".$idContrato."Hora Fin:  " .$fechaActual."Hora Inicio:  ".$ganancia;
             $sqlupdateSaldo= " 
                                  INSERT INTO saldo(idContrato,fecha,montoParcial,tipoPago)
                                  VALUES(:idContrato , :fechaActual , :ganancia, 'becaInstitucional');

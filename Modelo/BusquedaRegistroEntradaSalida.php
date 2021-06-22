@@ -31,15 +31,23 @@
       public function ListaEntradaSalidaIABI($idAsignacionBecaInstitucional,$fechaInicio,$fechaFin){
         //echo "valor asignacion Beca Institucional".$idAsignacionBecaInstitucional."fechaIinicio".$fechaInicio."fecha Fin".$fechaFin;
          $sql=" 
-         SELECT res.fecha,res.idAsignacionBecaInstitucional,(res.totalHora*pre.precio) as Total
-         FROM registroEntradaSalida res INNER JOIN asignacionBecaInstitucional abi 
-         ON res.idAsignacionBecaInstitucional = abi.idAsignacionBecaInstitucional
+         SELECT res.fecha,res.idAsignacionBecaInstitucional,(res.totalHora*pre.precio) as Total,res.totalHora
+         FROM gestion g INNER JOIN solicitudBecaInstitucional sbi
+         ON g.idgestion = sbi.idgestion
+         INNER JOIN asignacionBecaInstitucional abi 
+         ON abi.idSolicitudBecaInstitucional = sbi.idSolicitudBecaInstitucional
+         INNER JOIN  estudiante e 
+         ON e.idEstudiante = abi.idEstudiante
+         INNER JOIN area a 
+         ON sbi.idArea = a.idArea
+         INNER JOIN departamento dep 
+         ON a.idDepartamento = dep.idDepartamento
+         INNER JOIN registroEntradaSalida res
+         ON abi.idAsignacionBecaInstitucional= res.idAsignacionBecaInstitucional
          AND res.fecha BETWEEN :fechaInicio  AND  :fechaFin
          AND res.idAsignacionBecaInstitucional= :idAsignacionBecaInstitucional
-         INNER JOIN solicitudBecaInstitucional sbi 
-         ON sbi.idSolicitudBecaInstitucional = abi.idSolicitudBecaInstitucional 
          INNER JOIN precio pre 
-         ON pre.idPrecio = sbi.idPrecio ;
+         ON pre.idPrecio = sbi.idPrecio; 
        "; 
                $cmd = $this->conexion->prepare($sql);
                 $cmd->bindParam(':idAsignacionBecaInstitucional', $idAsignacionBecaInstitucional);
@@ -103,7 +111,7 @@
                 $cmd->bindParam(':fecha', $fecha);
                 $cmd->execute();
                 $Lista=$cmd->fetchAll();
-                var_dump ($Lista);
+                //var_dump ($Lista);
                 return $Lista;
                  
      }
@@ -140,7 +148,17 @@
                return $Lista;
                 
     }
-
+    public function ultimoRegistro()
+        {   $sqlRegistro = "
+            select idRegistroEntradaSalida, TIMEDIFF(horaFin,horaInicio) as hora
+            from registroentradasalida
+            where idregistroentradasalida=(select max(idregistroentradasalida)from registroentradasalida);
+                   ";
+            $cmd = $this->conexion->prepare($sqlRegistro);
+            $cmd->execute();
+            $registroUltimo = $cmd->fetch();
+            return $registroUltimo;
+        }
 
 
 }

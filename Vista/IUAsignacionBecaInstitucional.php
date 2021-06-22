@@ -15,6 +15,7 @@ $objLNListaPersonal = new LNListaPersonal();
 require ("../Logica/LNPersonalBusqueda.php");
 $usuario= new LNPersonalBusqueda();
 $datosUsuario=$usuario->rolPersonal($_SESSION['usuario']);
+//var_dump($datosUsuario);
     //header('Content-Type: text/html; charset=UTF-8');
     //Iniciar una nueva sesión o reanudar la existente.
     //session_start();
@@ -23,8 +24,8 @@ $datosUsuario=$usuario->rolPersonal($_SESSION['usuario']);
     //$user=$_SESSION['usuario'];
     //if(isset($_SESSION['contrasenia'])){
       //$pass=$_SESSION['contrasenia'];
-    $listaArea=$area->logicaListaArea();
-    $listaGestion=$gestion->logicaListaGestion();
+    $listaArea=$area->logicaListaArea($_REQUEST['idPersonal']);
+    $listaGestion=$gestion->logicaGestionActiva1();
     $listaPrecio=$precio->logicaListaPrecio();
    
     //$listaDepartamento =$departamento->logicaListaDepartamentoArea();

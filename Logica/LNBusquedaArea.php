@@ -13,8 +13,8 @@
 		{
             $this->objBusquedaArea = new BusquedaArea();
 		}
-        public  function LogicaListaArea(){
-            $LogicaListaArea =$this->objBusquedaArea->listaAreas();
+        public  function LogicaListaArea($idPersonal){
+            $LogicaListaArea =$this->objBusquedaArea->listaAreas($idPersonal);
             return $LogicaListaArea;
             }
   

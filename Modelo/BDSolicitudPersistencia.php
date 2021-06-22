@@ -10,9 +10,10 @@ class solicitudPersistencia
     }
 
     public function registrarSolicitud($idGestion,$idArea,$idPrecio) 
+    
     {
    $sqlRegistrarSolicitud= " 
-                           INSERT INTO becaInstitucional(idGestion,idArea,idPrecio)  
+                           INSERT INTO solicitudBecaInstitucional(idGestion,idArea,idPrecio)  
                            VALUES(:idGestion,:idArea,:idPrecio);
                          ";    
 

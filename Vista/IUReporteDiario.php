@@ -8,7 +8,9 @@ echo "Fecha: ".$_REQUEST['fecha'];*/
 $ReporteDiario = $ObjListaRegistroEntradaSalida->ListaReporteDiario($_REQUEST['idABI'],$_REQUEST['fecha']);
 $Reporte = $ObjListaRegistroEntradaSalida->ListaReporteDiarioDetalle($_REQUEST['idABI'],$_REQUEST['fecha']);
 //var_dump ($Reporte);
-
+/*$timestamp = strtotime($yourdatetime);
+$convert=date('h.i', $timestamp);*/
+//echo $convert;
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -195,6 +195,32 @@
          $listaConsulta = $cmd->fetchAll();
         return $listaConsulta;
         }
+
+        public function listaEstudiantesAsignacion1($idPersonal)
+        {
+        $sql ="
+        SELECT abi.idAsignacionBecaInstitucional,a.nombre,CONCAT_WS(' ',e.apellidoPaterno,e.apellidoMaterno,e.primerNombre,e.segundoNombre) Estudiante,e.idEstudiante,e.codigoEstudiante
+        FROM personal p INNER JOIN personalDepartamento pd
+        ON p.idPersonal = pd.idPersonal
+          AND p.idPersonal= :idPersonal
+        INNER JOIN departamento d 
+        ON d.idDepartamento = pd.idDepartamento
+        INNER JOIN area a 
+        ON d.idDepartamento = a.idDepartamento 
+        INNER JOIN solicitudBecaInstitucional sbi 
+        ON a.idArea= sbi.idArea
+        INNER JOIN asignacionBecaInstitucional abi
+        ON abi.idSolicitudBecaInstitucional = sbi.idSolicitudBecaInstitucional
+        INNER JOIN estudiante e 
+        ON e.idEstudiante = abi.idSolicitudBecaInstitucional; ";
+
+         $cmd = $this->conexion->prepare($sql);
+         $cmd->bindParam(':idPersonal', $idPersonal);
+         $cmd->execute();
+         $listaConsulta = $cmd->fetchAll();
+        return $listaConsulta;
+        }
+        
         public function busquedaEstudiante($nombre,$primerNombre,$segundoNombre,$apellidoPaterno,$apellidoMaterno,$ci,$activo){
             $sqlBusquedaEstudiante = " SELECT  c.nombre,CONCAT_WS(' ',e.apellidoPaterno,e.apellidoMaterno,e.primerNombre,e.segundoNombre) AS nombreCompleto,e.ci,
                                                 IF(e.activo=1,'Si','No') AS activo, e.idEstudiante

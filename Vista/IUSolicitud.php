@@ -19,7 +19,7 @@ session_start();
     //if(isset($_SESSION['contrasenia'])){
       //$pass=$_SESSION['contrasenia'];
       $listaBecaInstitucional=$becaInstitucional->LogicaListaBecaInstitucional($_REQUEST['idPersonal']);
-      $listaGestion=$gestion->logicaListaGestion();
+      $listaGestion=$gestion->logicaGestiones();
 
 ?>
 <!DOCTYPE html>
@@ -75,7 +75,7 @@ session_start();
            </tr>
            </center> 
 <div class="main-boxes">
-        <?php if($listaBecaInstitucional){?>
+
         <div class="container"> 
           <center>
             <table border="1">
@@ -98,7 +98,7 @@ session_start();
             </center>
         </div>
 
-        <?php }?>  
+
     </div>
 </body>
 </html>

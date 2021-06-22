@@ -11,7 +11,7 @@ header('Content-Type: text/html; charset=UTF-8');
 
 			require ("../Logica/LNPersonalBusqueda.php");
     		$usuario= new LNPersonalBusqueda();
-    		$idPersonal=$_REQUEST['user'];
+    		$idPersonal=$_SESSION['idPersonal'];
 			$datosPersonal = $usuario->LogicaDatoPersonal($idPersonal);
 			$datosUsuario=$usuario->rolPersonal($_SESSION['usuario']);
 			$lista=$usuario->listaPersonal();
@@ -37,7 +37,22 @@ header('Content-Type: text/html; charset=UTF-8');
 	<link rel="stylesheet" href="fondo/css/nice-select.css">
 	<link rel="stylesheet" href="fondo/css/main.css">
 </head>
+<style>
+	input [type=submit]{
+		display:flex;
+		flex-direction:column;
+		padding-left:0;
+		margin-bottom:0;
+		list-style:none
+	}
+	.enviar{
+		background:'#00000000';
+		color:'white';
+		padding-right:0;
+		padding-left:0
+	}
 
+</style>
 <body>
 
 <header class="default-header">
@@ -45,12 +60,11 @@ header('Content-Type: text/html; charset=UTF-8');
 			<div class="container">
 				<div class="collapse navbar-collapse justify-content align-items-center" id="navbarSupportedContent">
 					<ul class="navbar-nav">
-						<li><a  href="IUListaPersonal.php?idPersonal=<?php echo $datosUsuario['idPersonal']?>">Personal</a></li>
+					
 						
-						<li><a  href="IUListaEstudiante.php">Estudiante</a></li>
 						<li><a  href="ReporteHorasTrabajadas.php?idPersonal=<?php echo $datosUsuario['idPersonal']?>">reporteHoras</a></li>
-						<li><a  href="ReporteMensual.php?idPersonal=<?php echo $datosUsuario['idPersonal']?>">Reporte Mensual</a></li>
-
+						<li><a  href="IUReporteMensualDepartamento.php?idPersonal=<?php echo $datosUsuario['idPersonal']?>">Reporte Mensual</a></li>
+						<li><a  href="IUSolicitud.php?idPersonal=<?php echo $datosUsuario['idPersonal']?>">Solicitud</a></li>
 					</ul>
 					
 				</div>

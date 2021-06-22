@@ -4,6 +4,7 @@ require_once("../Logica/LNListaPersonal.php");
 $objLNListaPersonal = new LNListaPersonal();
 require ("../Logica/LNPersonalBusqueda.php");
 $usuario= new LNPersonalBusqueda();
+$idPersonal=$_SESSION['idPersonal'];
 $datosUsuario=$usuario->rolPersonal($_SESSION['usuario']);
 //var_dump ($datosUsuario);
 //echo "Id Empleado --> ".$_REQUEST['idPersonal']."<br>";
@@ -12,6 +13,8 @@ $segundoNombre=$_REQUEST['segundoNombre'];
 $apellidoPaterno=$_REQUEST['apellidoPaterno'];
 $apellidoMaterno=$_REQUEST['apellidoMaterno'];
 $ci=$_REQUEST['ci'];
+
+//var_dump($_REQUEST);
 
 
 $estado = $_REQUEST['activo'];
@@ -62,12 +65,34 @@ if ( $post ) {
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="IUListaEstudiante.php">Estudiante <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="IUListaPersonal.php">Personal</a>
-      </li>
+    <li>
+						<form action="IUListaEstudiante.php" method="post"> 
+						<input type="hidden" name="idPersonal" value="<?php echo $datosUsuario['idPersonal']?>">
+						<input type="hidden" name="primerNombre" value="">
+						<input type="hidden" name="segundoNombre" value=""> 
+						<input type="hidden" name="apellidoPaterno" value="">
+						<input type="hidden" name="apellidoMaterno" value="">
+						<input type="hidden" name="carrera" value="">
+						<input type="hidden" name="nombre" value="">
+						<input type="hidden" name="ci" value="">
+						<input type="hidden" name="activo" value="todo">
+						<input type="hidden" name="buscar" value="buscar">
+						<input type="submit" value="Estudiante" class="enviar">
+						</form>
+						</li> 
+  		<li>
+						<form action="IUListaPersonal.php" method="post"> 
+						<input type="hidden" name="idPersonal" value="<?php echo $datosUsuario['idPersonal']?>">
+						<input type="hidden" name="primerNombre" value="">
+						<input type="hidden" name="segundoNombre" value=""> 
+						<input type="hidden" name="apellidoPaterno" value="">
+						<input type="hidden" name="apellidoMaterno" value="">
+						<input type="hidden" name="ci" value="">
+						<input type="hidden" name="activo" value="todo">
+						<input type="hidden" name="buscar" value="buscar">
+						<input type="submit" value="personal" class="enviar">
+						</form>
+						</li>
       <li class="nav-item active">
         <a class="nav-link" href="IURegistrarPersonal.php">Registrar <span class="sr-only">(current)</span></a>
       </li>
@@ -97,7 +122,7 @@ if ( $post ) {
         </form>
     
     </div>
-    <button "><a  href="IUSolicitud.php?idPersonal=<?php echo $datosUsuario['idPersonal']?>">Solicitud</a></button>
+    <button><a href="IURegistrarPersonal.php">RegistrarPersonal</a></button>
     
     <div class="main-boxes">
         <div class="main-header">

@@ -14,7 +14,10 @@
             $this->objBusquedaCarrera = new BusquedaCarrera();
 		}
   
-  
+		public  function logicaListaCarrera(){
+			$logicaListaCarrera =$this->objBusquedaCarrera->listaCarrera();
+			return $logicaListaCarrera;
+		}
   
   
   

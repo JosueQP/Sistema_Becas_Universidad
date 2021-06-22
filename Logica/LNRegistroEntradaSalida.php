@@ -1,65 +1,71 @@
 <?php
 require_once "../Logica/LNPersonalBusqueda.php";
-require_once "../Logica/LNEstudianteBusqueda.php";
 require_once "../Logica/LNGestionBusqueda.php";
+require_once "../Logica/LNEstudianteBusqueda.php";
 require_once "../Logica/LNBusquedaAsignacionBecaInstitucional.php";
 require_once "../Logica/LNBusquedaRegistroEntradaSalida.php";
 require_once "../Logica/LNRegistroEntradaSalidaPersistencia.php";
-
+//ci no debe llegar vacio
 if(!empty($_REQUEST['ci'])){
-    $objLNEstudianteBusqueda = new  LNEstudianteBusqueda();
+    //echo "Ci: ".$_REQUEST['ci'];
+    $objLNEstudianteBusqueda = new LNEstudianteBusqueda();
     $objLNGestion = new LNGestionBusqueda();
     $estudiante = $objLNEstudianteBusqueda->buscarCIEstudiante($_REQUEST['ci']);
-  // var_dump ($estudiante);
-    $gestionActiva = $objLNGestion->gestionActiva ();
-    //var_dump ($gestionActiva);
-    //var_dump ($gestionActiva);
+    $gestionActiva = $objLNGestion->logicaGestionActiva();
+    //var_dump($gestionActiva);
+    //existe el estudiante
     if($estudiante){
-        //echo "CI:".$_REQUEST['ci'];
+        //var_dump($estudiante);
         $dtz = new DateTimeZone("America/Caracas");
-        $dt = new DateTime ("now",$dtz);
-
-        $fechaActual = $dt -> format("Y-m-d");
-        $horaActual = $dt -> format ("H-i-s");
-        //echo $fechaActual;
-    $objBABI = new LNBusquedaAsignacionBecaInstitucional();
-   
-    $existeEstudianteGestionActual=$objBABI->buscarEstudianteGestion($gestionActiva['idGestion'],$estudiante['idEstudiante']);
-   //var_dump ($existeEstudianteGestionActual) ;
-    if($existeEstudianteGestionActual){
-        $idAsignacionBecaInstitucional = $existeEstudianteGestionActual['idAsignacionBecaInstitucional'];
-        $objLNBRES =new LNBusquedaRegistroEntradaSalida();
-        //echo $idAsignacionBecaInstitucional;
-        $estudianteMarcoFechaActual = $objLNBRES->verifyEstudianteSalidaFechaActual($idAsignacionBecaInstitucional,$fechaActual);
-
-        $objLNRES= new LNRegistroEntradaSalidaPersistencia();
-
-        if($estudianteMarcoFechaActual){
-            foreach ($estudianteMarcoFechaActual as $registro) {
-                if(is_null($registro['horaFin'])){
-                    $registrado = $objLNRES -> registroSalida ($idAsignacionBecaInstitucional,$horaActual,$registro['horaInicio']);
-                    if($registrado>0){
-                        echo "se actualizo de manera correcta la salida";
-                    }else{
-                        echo "error al actualizar la hora Inicio";
+        $dt = new DateTime("now", $dtz);
+        //Buscar: PHP como obtener hora para bolivia 
+        //https://www.php.net/manual/es/timezones.america.php
+        //Stores time as "2021-04-04T13:35:48":
+        //$currentTime = $dt->format("Y-m-d") . "T" . $dt->format("H:i:s");
+        //echo"Unidito fecha y hora:   ".$currentTime;
+        //echo "fechita:  ".$dt->format("Y-m-d");
+        //echo "horita:  ".$dt->format("H:i:s");
+        $fechaActual = $dt->format("Y-m-d");
+        $horaActual = $dt->format("H:i:s");
+        //verificar si estudiante becado trabaja en la gestion actual.
+        $objLNBABI = new LNBusquedaAsignacionBecaInstitucional();
+        $existeEstudianteGestionActual = $objLNBABI->buscarEstudianteGestion($gestionActiva['idGestion'], $estudiante['idEstudiante']);
+        if ($existeEstudianteGestionActual) {
+            //var_dump($existeEstudianteGestionActual);
+            //Se obtiene el valor de "idAsignacionBecaInstitucional" para verificar si el estudiante ingreso en la fecha actual
+            $idAsignacionBecaInstitucional = $existeEstudianteGestionActual['idAsignacionBecaInstitucional'];
+            $objLNBRES = new LNBusquedaRegistroEntradaSalida();
+            $estudianteMarcoFecha = $objLNBRES->verifyEstudianteSalidaFechaActual($idAsignacionBecaInstitucional,$fechaActual);
+            $objLNRES = new LNRegistroEntradaSalidaPersistencia();
+            //si hay datos, entonces quiere decir que el estudiante ya marco en la fecha actual.
+            if($estudianteMarcoFecha){
+                //var_dump($estudianteMarcoFecha);
+                foreach($estudianteMarcoFecha as $registro){    
+                    if(is_null($registro['horaFin'])){
+                                            //registroSalida($idAsignacionBecaInstitucional,$horaFin,$horaInicio)
+                                            $registrado = $objLNRES->registroSalida($idAsignacionBecaInstitucional,$horaActual,$registro['horaInicio']);
+                        if($registrado>0){
+                            echo "Se actualizo de manera correcta la salida";
+                        }else{
+                            echo "Error al actualizar la hora inicio";
+                        }
                     }
                 }
-            }   
-
-                }else{
-                    echo"Marcar la hora Inicio : <br>";
-                    $registrado = $objLNRES->registroEntrada($idAsignacionBecaInstitucional,$fechaActual,$horaActual);
-                    //echo"se registra la entrada correctamente";
-                }
-            }else{
-                echo "usuario no trabaja en la gestion actual";
+            }//estudiante
+            else{
+                //NO registro nada en esta fecha. Se registra la fecha y hora de entrada
+                //echo "Marcara la hora inicio:  <br>";
+                $registrado = $objLNRES->registroEntrada($idAsignacionBecaInstitucional,$fechaActual,$horaActual);
+                echo "Se registra la entrada correctamente";
             }
         }else{
-            echo "Usuario Invalido";
-        }
-       
-       }else{
-            echo "ci no puede ser vacio";
-       }
+            echo "Usuario no trabaja en la gestion actual";
+        }//end else
+    }else{//ci estudiante no existe
+        echo "Usuario Invalido";
+    }
+}else{//opuesto empty
+    echo "Ci no puede ser vacio";
+}//end else
 
-?>
+

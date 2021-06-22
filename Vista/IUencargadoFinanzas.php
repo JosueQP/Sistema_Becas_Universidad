@@ -11,7 +11,7 @@
 			
 			require ("../Logica/LNPersonalBusqueda.php");
     		$usuario= new LNPersonalBusqueda();
-    		$idPersonal=$_REQUEST['user'];
+    		$idPersonal=$_SESSION['idPersonal'];
 			$datosPersonal = $usuario->LogicaDatoPersonal($idPersonal);
 			$datosUsuario=$usuario->rolPersonal($_SESSION['usuario']);
 			//var_dump($datosPersonal);
@@ -55,7 +55,7 @@
 				<div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
 					<ul class="navbar-nav">
 						<li><a  href="ReporteMensual.php">Reporte Mensual</a></li>
-						<li><a href="../salirPersonal.php">Cerrar Sesion</a></li>
+						<li><a href="salirPersonal.php">Cerrar Sesion</a></li>
 					</ul>
 				</div>
 			</div>
@@ -95,7 +95,7 @@
 	<script src="js/jquery.sticky.js"></script>
 	<script src="js/main.js"></script>
 </body>
-<META HTTP-EQUIV="REFRESH" CONTENT="1000000;URL=../Vista/SalirPersonal.php">
+<META HTTP-EQUIV="REFRESH" CONTENT="1000000;URL=../Vista/salirPersonal.php">
 </html>
 <?php
 /*}}else{

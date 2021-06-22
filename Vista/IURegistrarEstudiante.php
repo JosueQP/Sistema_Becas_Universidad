@@ -1,5 +1,5 @@
 <?php
-    require ("../Logica/LNPersonalBusqueda.php");
+    require ("../Logica/LNBusquedaCarrera.php");
     header('Content-Type: text/html; charset=UTF-8');
     //Iniciar una nueva sesión o reanudar la existente.
     
@@ -9,7 +9,7 @@
     if(isset($_SESSION['contrasenia'])){
      $pass=$_SESSION['contrasenia'];*/
 
-     $usuario= new LNPersonalBusqueda();
+     $usuario= new LNBusquedaCarrera();
      $listaCarra=$usuario->logicaListaCarrera();
 ?>
 <html>
@@ -28,7 +28,7 @@
         <th>Carrera</th>
                 <td>
                 
-                    <select name="carrera" id="idCarrera">
+                    <select name="idCarrera" id="idCarrera">
                       <?php foreach ($listaCarra as $lista): ?>
                       <option value="<?php echo($lista['idCarrera'])?>"><?php echo($lista['nombre'])?></option>
                     <?php endforeach ;

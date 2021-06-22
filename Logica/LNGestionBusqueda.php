@@ -15,6 +15,10 @@
             $gestionActiva =$this->objGestionBusqueda->gestionActiva();
             return $gestionActiva;
             }
+            public  function logicaGestionActiva1(){
+                $logicaGestionActiva1 =$this->objGestionBusqueda->gestionActiva1();
+                return $logicaGestionActiva1;
+                }
         public  function logicaGestiones(){
             $logicaGestiones =$this->objGestionBusqueda->gestiones();
             return $logicaGestiones;

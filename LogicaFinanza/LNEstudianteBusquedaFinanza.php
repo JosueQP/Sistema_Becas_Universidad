@@ -1,14 +1,16 @@
 <?php
     require_once("../ModeloFinanza/BusquedaEstudianteFinanza.php");
-
+	require_once("../Logica/LNEstudianteBusqueda.php");
 	//session_start();
+
+	$objEstudiante= new LNEstudianteBusqueda();
 
 	class LNBusquedaEstudianteFinanza
 	{
 		
 		
 		private $objBusquedaEstudianteFinanza;
-
+		
 		public function __construct()
 		{
             $this->objBusquedaEstudianteFinanza = new BusquedaEstudianteFinanza();
@@ -39,7 +41,7 @@
 
 			return $InsertarSaldo;
 		}
-
+		
 		public function contratoEstudiante($idContrato)
 		{   
 			$contratoEstudiante = $this->objBusquedaEstudianteFinanza->EstudianteContrado($idContrato);
