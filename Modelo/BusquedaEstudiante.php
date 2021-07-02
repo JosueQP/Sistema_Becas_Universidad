@@ -182,13 +182,18 @@
         public function listaEstudiantesAsignacion()
         {
         $sql ="
-        SELECT abi.idAsignacionBecaInstitucional,a.nombre,CONCAT_WS(' ',e.apellidoPaterno,e.apellidoMaterno,e.primerNombre,e.segundoNombre) Estudiante,e.idEstudiante,e.codigoEstudiante
-        FROM estudiante e INNER JOIN asignacionBecaInstitucional abi 
-        ON e.idEstudiante = abi.idEstudiante
-        INNER JOIN  solicitudBecaInstitucional sbi 
-        ON sbi.idSolicitudBecaInstitucional = abi.idSolicitudBecaInstitucional
-        INNER JOIN  area a 
-        ON a.idArea = sbi.idArea; ";
+        call SPlistaEstudiantesAsignacion(); ";
+
+         $cmd = $this->conexion->prepare($sql);
+         $cmd->execute();
+         $listaConsulta = $cmd->fetchAll();
+        return $listaConsulta;
+        }
+
+        public function listaEstudiantes()
+        {
+        $sql ="
+        call SPListaEstudiante(); ";
 
          $cmd = $this->conexion->prepare($sql);
          $cmd->execute();

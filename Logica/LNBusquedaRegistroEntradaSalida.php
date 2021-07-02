@@ -33,9 +33,9 @@
         return $ListaReporteDiarioDetalle;
     }
     public function ultimoRegistro()
-		{   
-			$ultimoRegistro = $this->objBusquedaRegistroEntradaSalida->ultimoRegistro();
-			return $ultimoRegistro;
-		}
+    {   
+        $ultimoRegistro = $this->objBusquedaRegistroEntradaSalida->ultimoRegistro();
+        return $ultimoRegistro;
+    }
 }
 ?>

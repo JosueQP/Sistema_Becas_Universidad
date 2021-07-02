@@ -35,18 +35,17 @@ public function registroEntrada($idAsignacionBecaInstitucional,$fecha,$horaInici
        return 0;
    }
 }//end function
-public function registroSalida($idAsignacionBecaInstitucional,$horaFin,$totalHora) 
+public function registroSalida($idRegistroEntradaSalida,$horaFin) 
 {   //echo "Datos a actualizar:  idAsignacionBecaInstitucional ".$idAsignacionBecaInstitucional."Hora Fin:  " .$horaFin."Hora Inicio:  ".$horaInicio;
     $sqlRegistroSalida= " 
                             UPDATE registroEntradaSalida
-                            SET horaFin = :horaFin, totalHora = :totalHora
-                            WHERE idAsignacionBecaInstitucional = :idAsignacionBecaInstitucional;
+                            SET horaFin = :horaFin 
+                            WHERE idRegistroEntradaSalida = :idRegistroEntradaSalida;
                         ";
     try{
             $cmd = $this->conexion->prepare($sqlRegistroSalida);
-            $cmd->bindParam(':idAsignacionBecaInstitucional', $idAsignacionBecaInstitucional);
+            $cmd->bindParam(':idRegistroEntradaSalida', $idRegistroEntradaSalida);
             $cmd->bindParam(':horaFin', $horaFin);
-            $cmd->bindParam(':totalHora', $totalHora);
             if($cmd->execute()){
                 echo "se hizo el update";
                 return 1;   
@@ -59,7 +58,7 @@ public function registroSalida($idAsignacionBecaInstitucional,$horaFin,$totalHor
         exit();
         return 0;
     }
-}//end f
+}//end function
 
 public function MDLverificarFechaEntradaSalida($idAsignacionBecaInstitucional, $fechaActual){
     $sqlVerificarFecha=" 
@@ -74,6 +73,35 @@ public function MDLverificarFechaEntradaSalida($idAsignacionBecaInstitucional, $
             $validado=$cmd->fetchAll();
             return $validado;
 }//endfunction
-  
+public function actualizarTotalHoras($idRegistroEntradaSalida,$horas){
+    $sqlRegistroSalida= " 
+    UPDATE registroEntradaSalida
+    SET totalHora = :totalHora 
+    WHERE idRegistroEntradaSalida = :idRegistroEntradaSalida;
+                ";
+        try{
+        $cmd = $this->conexion->prepare($sqlRegistroSalida);
+        $cmd->bindParam(':idRegistroEntradaSalida', $idRegistroEntradaSalida);
+        $cmd->bindParam(':totalHora', $horas);
+        if($cmd->execute()){
+        echo "se hizo el update";
+        return 1;   
+        }else{
+        return 0;
+        echo "No se hizo el update";
+        }
+        }catch(PDOException $e){
+        echo 'ERROR: No se logro realizar la actualización - '.$e->getMessage();
+        exit();
+        return 0;
+        }
+}
+
+
+
+
+
+
+
   }
 ?>

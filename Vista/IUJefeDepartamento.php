@@ -4,16 +4,18 @@ header('Content-Type: text/html; charset=UTF-8');
     //Iniciar una nueva sesión o reanudar la existente.
     session_start();
     //Si existe la sesión "cliente"..., la guardamos en una variable.
-   /* if (isset($_SESSION['usuario'])){
+    if (isset($_SESSION['usuario'])){
 		$user=$_SESSION['usuario'];
 		if(isset($_SESSION['contrasenia'])){
-			$pass=$_SESSION['contrasenia'];*/
+			$pass=$_SESSION['contrasenia'];
 
 			require ("../Logica/LNPersonalBusqueda.php");
     		$usuario= new LNPersonalBusqueda();
     		$idPersonal=$_SESSION['idPersonal'];
+			//echo $idPersonal;
 			$datosPersonal = $usuario->LogicaDatoPersonal($idPersonal);
 			$datosUsuario=$usuario->rolPersonal($_SESSION['usuario']);
+			//var_dump($datosUsuario);
 			$lista=$usuario->listaPersonal();
 			//$dato=$_POST['usuario'];
 			//echo  $idPersonal;
@@ -65,6 +67,21 @@ header('Content-Type: text/html; charset=UTF-8');
 						<li><a  href="ReporteHorasTrabajadas.php?idPersonal=<?php echo $datosUsuario['idPersonal']?>">reporteHoras</a></li>
 						<li><a  href="IUReporteMensualDepartamento.php?idPersonal=<?php echo $datosUsuario['idPersonal']?>">Reporte Mensual</a></li>
 						<li><a  href="IUSolicitud.php?idPersonal=<?php echo $datosUsuario['idPersonal']?>">Solicitud</a></li>
+						<li>
+						<form action="IUListaEstudiante1.php" method="post"> 
+						<input type="hidden" name="idPersonal" value="<?php echo $datosUsuario['idPersonal'];?>">
+						<input type="hidden" name="primerNombre" value="">
+						<input type="hidden" name="segundoNombre" value=""> 
+						<input type="hidden" name="apellidoPaterno" value="">
+						<input type="hidden" name="apellidoMaterno" value="">
+						<input type="hidden" name="carrera" value="">
+						<input type="hidden" name="nombre" value="">
+						<input type="hidden" name="ci" value="">
+						<input type="hidden" name="activo" value="todo">
+						<input type="hidden" name="buscar" value="buscar">
+						<input type="submit" value="Estudiante" class="enviar">
+						</form>
+						</li>
 					</ul>
 					
 				</div>
@@ -110,9 +127,9 @@ header('Content-Type: text/html; charset=UTF-8');
 <META HTTP-EQUIV="REFRESH" CONTENT="1000000;URL=../Vista/SalirPersonal.php">
 </html>
 <?php
-/*}}else{ 
-	header('Location: ../salirPersonal.php');//Aqui lo redireccionas al lugar que quieras.
+}}else{ 
+	header('Location: salirPersonal.php');//Aqui lo redireccionas al lugar que quieras.
 		die() ;
 		
-	   }*/
+	   }
    ?>

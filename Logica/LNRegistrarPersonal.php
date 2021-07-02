@@ -33,8 +33,8 @@
                                                        $activo
                                                         );
     if($exitoRegistro==1){
-         // echo "usuario: ".$_REQUEST['usuario'];
-        //echo "constrasenia: ".$_REQUEST['contrasenia'];
+         echo "usuario: ".$_REQUEST['usuario'];
+        echo "constrasenia: ".$_REQUEST['contrasenia'];
         header ('location:../Vista/IURegistroJefeDepartamento.php');
     }else{
         echo "Error al registrar el personal";

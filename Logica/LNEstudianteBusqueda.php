@@ -53,6 +53,10 @@
 			$LogicaEstudianteAsignacion =$this->objDBEstudiante->listaEstudiantesAsignacion();
 			return $LogicaEstudianteAsignacion;
 		}
+		public  function LogicalistaEstudiantes(){
+			$LogicalistaEstudiantes =$this->objDBEstudiante->listaEstudiantes();
+			return $LogicalistaEstudiantes;
+		}
 		public  function LogicaEstudianteAsignacionDepartamento($idPersonal){
 			$LogicaEstudianteAsignacionDepartamento =$this->objDBEstudiante->listaEstudiantesAsignacion1($idPersonal);
 			return $LogicaEstudianteAsignacionDepartamento;

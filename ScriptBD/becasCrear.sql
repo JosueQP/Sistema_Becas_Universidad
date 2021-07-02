@@ -45,7 +45,7 @@ apellidoMaterno varchar (50) ,
 fechaNacimiento date not null,
 genero Enum('Masculino','Femenino'),
 usuario varchar (30),
-contrasenia varchar (30),
+contrasenia varchar (100),
 activo bool not null,
 foreign key (idCarrera) references carrera(idCarrera),
 foreign key (idRol) references rol(idRol)

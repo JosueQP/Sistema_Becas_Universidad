@@ -13,7 +13,8 @@
      
            public function verificarUsuarioPersonal($usuario)
         {   
-            $sqlverificarUsuarioPersonal = "SELECT *,CONCAT_WS(' ',primerNombre,segundoNombre,apellidoPaterno,apellidoMaterno) AS nombreUsuario FROM personal where usuario=:usuario;";
+            $sqlverificarUsuarioPersonal = "
+            SELECT *,CONCAT_WS(' ',primerNombre,segundoNombre,apellidoPaterno,apellidoMaterno) AS nombreUsuario FROM personal where usuario=:usuario;";
                     $cmd = $this->conexion->prepare($sqlverificarUsuarioPersonal);
                     $cmd->bindParam(':usuario',$usuario);
                     $cmd->execute();
@@ -28,7 +29,8 @@
         public function verificarContraseniaPersonal($contrasenia)
         {  
             //echo $contrasenia;              
-            $sqlverificarContraseniaPersonal = " SELECT * FROM personal WHERE contrasenia=:contrasenia ;";
+            $sqlverificarContraseniaPersonal = " 
+            SELECT * FROM personal WHERE contrasenia=:contrasenia ;";
             $cmd = $this->conexion->prepare($sqlverificarContraseniaPersonal);
                 
                 $cmd->bindParam(':contrasenia',$contrasenia);
@@ -84,7 +86,8 @@
       
            public function datosPersonal($usuario)
         {   
-            $sqlDatosPersonal = "SELECT * FROM personal WHERE usuario=:usuario ;";
+            $sqlDatosPersonal = "
+            SELECT * FROM personal WHERE usuario=:usuario ;";
                     $cmd = $this->conexion->prepare($sqlDatosPersonal);
                     $cmd->bindParam(':usuario',$usuario);
                     $cmd->execute();
@@ -96,7 +99,8 @@
             }
         }
         public function listaPersonal(){
-            $sqlListaPersonal = "SELECT * idPersonal FROM personal;";
+            $sqlListaPersonal = "
+            SELECT * idPersonal FROM personal;";
             $cmd = $this->conexion->prepare($sqlListaPersonal);
             $cmd->execute();
             $listaPersonal = $cmd->fetchAll();
@@ -192,7 +196,7 @@
    
     public function listaRol()
     {
-    $sqlListaRol ="SELECT  * from rol where idRol !=3 ;";
+    $sqlListaRol ="call SPlistaRol();";
      $cmd = $this->conexion->prepare($sqlListaRol);
      $cmd->execute();
      $listaConsulta = $cmd->fetchAll();
@@ -202,9 +206,7 @@
 
     public function listaPersonalU()
     {
-    $sqlListaPersonalU =" SELECT CONCAT_WS(' ',apellidoPaterno,apellidoMaterno,primerNombre,segundoNombre) AS nombreCompleto,idPersonal
-                            FROM personal
-                            WHERE idPersonal = (SELECT MAX(idPersonal) as maxid FROM personal);";
+    $sqlListaPersonalU ="call SPlistaPersonalU();";
      $cmd = $this->conexion->prepare($sqlListaPersonalU);
      $cmd->execute();
      $listaConsulta = $cmd->fetch();

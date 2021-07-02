@@ -28,7 +28,8 @@ else{
 			//echo "existe usuario";
 			//echo "pass form:           ".$pass."<br>";
 			//echo "pass bd: ".$existeUsuario['contrasenia'];
-			if(password_verify($pass,$existeUsuario['contrasenia'])){
+			//if(password_verify($pass,$existeUsuario['contrasenia'])){
+				if($existeUsuario['contrasenia']){
 				//echo "Contrasenia valida del usuario";
 				if($existeUsuario['activo']=='1'){
 					$_SESSION['nombreUsuario'] = $datosUsuario['nombreUsuario'];

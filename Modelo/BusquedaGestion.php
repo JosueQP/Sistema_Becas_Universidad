@@ -11,7 +11,7 @@
         public function gestionActiva()
         {   //realizando la consulta
             $datoGestion = "
-            select * from gestion where activo=1;
+            call SPgestionActiva();
             ";
             $cmd = $this->conexion->prepare($datoGestion);
             $cmd->execute();
@@ -22,7 +22,7 @@
         public function gestionActiva1()
         {   //realizando la consulta
             $datoGestion = "
-            select * from gestion where activo=1;
+            call SPgestionActiva1();
             ";
             $cmd = $this->conexion->prepare($datoGestion);
             $cmd->execute();
@@ -34,7 +34,7 @@
         public function Gestiones()
         {   //realizando la consulta
             $datoGestion = "
-            select * from gestion ORDER BY idGestion Desc;
+            call SPGestiones();
             ";
             $cmd = $this->conexion->prepare($datoGestion);
             $cmd->execute();

@@ -8,16 +8,16 @@
 		{
 			$this->conexion =  new Conexion();
 		}
-    public function AsignarBecaInstitucional($idBecaInstitucional,$idEstudiante) 
+    public function AsignarBecaInstitucional($idSolicitudBecaInstitucional,$idEstudiante) 
          {
         $sqlAsignarBecaInstitucional= " 
-                                INSERT INTO asignacionBecaInstitucional (idBecaInstitucional,idEstudiante)  
-                                VALUES(:idBecaInstitucional,:idEstudiante);
+                                INSERT INTO asignacionBecaInstitucional (idSolicitudBecaInstitucional,idEstudiante)  
+                                VALUES(:idSolicitudBecaInstitucional,:idEstudiante);
                               ";    
 
         try{
                 $cmd = $this->conexion->prepare($sqlAsignarBecaInstitucional);
-                $cmd->bindParam(':idBecaInstitucional', $idBecaInstitucional);
+                $cmd->bindParam(':idSolicitudBecaInstitucional', $idSolicitudBecaInstitucional);
                 $cmd->bindParam(':idEstudiante', $idEstudiante);
                 if($cmd->execute()){
                     return 1;   

@@ -11,7 +11,7 @@
 
         public function listaDepartamento()
         {
-        $sqlListaDepartamento ="SELECT  idDepartamento,nombre from departamento ;";
+        $sqlListaDepartamento ="call SPlistaDepartamento();";
          $cmd = $this->conexion->prepare($sqlListaDepartamento);
          $cmd->execute();
          $listaConsulta = $cmd->fetchAll();

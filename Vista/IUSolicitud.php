@@ -19,6 +19,7 @@ session_start();
     //if(isset($_SESSION['contrasenia'])){
       //$pass=$_SESSION['contrasenia'];
       $listaBecaInstitucional=$becaInstitucional->LogicaListaBecaInstitucional($_REQUEST['idPersonal']);
+     //var_dump($listaBecaInstitucional);
       $listaGestion=$gestion->logicaGestiones();
 
 ?>
@@ -83,12 +84,15 @@ session_start();
                     <th>Area</th>
                     <th>Precio</th>
                     <th>cantidad</th>
+                    <th>Asignar</th>
                 </tr>
                 <?php foreach($listaBecaInstitucional as $Listas){?>
                 <tr>
-                    <td ><?php echo $Listas['area']?></td>
+                <td><a  href="IUDetalleTrabajo.php?idSolicitudBecaInstitucional=<?php echo $Listas['idSolicitudBecaInstitucional']?>"><?php echo $Listas['area']?></a></td>
                     <td ><?php echo $Listas['precio']?></td>
                     <td ><?php echo $Listas['cantidad']?></td>
+                    <td><a  href="IUAsignacionEstudianteBecaInstitucional.php?idSolicitudBecaInstitucional=<?php echo $Listas['idSolicitudBecaInstitucional']?>&idPersonal=<?php echo $Listas['idPersonal']?>">Asignar</a></td>
+
                 </tr>
                 <?php }?>
                 <br>

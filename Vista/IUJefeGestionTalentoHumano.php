@@ -5,10 +5,10 @@
     //Iniciar una nueva sesión o reanudar la existente.
     session_start();
 
-    /*if (isset($_SESSION['usuario'])){
+    if (isset($_SESSION['usuario'])){
 		$user=$_SESSION['usuario'];
 		if(isset($_SESSION['contrasenia'])){
-			$pass=$_SESSION['contrasenia'];*/
+			$pass=$_SESSION['contrasenia'];
 
 	//$rolPersonal->rolPersonal($_REQUEST['rol']);		
    			 require ("../Logica/LNPersonalBusqueda.php");
@@ -55,9 +55,9 @@
 
 				<div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
 					<ul class="navbar-nav">
-						
+						<li><a  href="ReporteMensual.php">Reporte Mensual</a></li>
 						<li>
-						<form action="IUListaPersonal.php" method="post"> 
+						<form action="IUListaPersonal1.php" method="post"> 
 						<input type="hidden" name="idPersonal" value="<?php echo $datosUsuario['idPersonal'];?>">
 						<input type="hidden" name="primerNombre" value="">
 						<input type="hidden" name="segundoNombre" value=""> 
@@ -69,23 +69,8 @@
 						<input type="submit" value="personal" class="enviar">
 						</form>
 						</li>
-						<li>
-						<form action="IUListaEstudiante.php" method="post"> 
-						<input type="hidden" name="idPersonal" value="<?php echo $datosUsuario['idPersonal'];?>">
-						<input type="hidden" name="primerNombre" value="">
-						<input type="hidden" name="segundoNombre" value=""> 
-						<input type="hidden" name="apellidoPaterno" value="">
-						<input type="hidden" name="apellidoMaterno" value="">
-						<input type="hidden" name="carrera" value="">
-						<input type="hidden" name="nombre" value="">
-						<input type="hidden" name="ci" value="">
-						<input type="hidden" name="activo" value="todo">
-						<input type="hidden" name="buscar" value="buscar">
-						<input type="submit" value="Estudiante" class="enviar">
-						</form>
-						</li>
-
 						<li><a href="salirPersonal.php">Cerrar Sesion</a></li>
+
 					</ul>
 				</div>
 			</div>
@@ -128,11 +113,11 @@
 <META HTTP-EQUIV="REFRESH" CONTENT="1000000;URL=../Vista/SalirPersonal.php">
 </html>
 <?php
-//}}else{
-	//header('Location: ../salirPersonal.php');//Aqui lo redireccionas al lugar que quieras.
-	//	die() ;
+}}else{
+	header('Location: salirPersonal.php');//Aqui lo redireccionas al lugar que quieras.
+		die() ;
 		
-	 //  }
+	  }
    ?>
 
    

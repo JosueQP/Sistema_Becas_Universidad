@@ -11,7 +11,7 @@
   
         public function listaDia()
         {
-        $sqlListaDia ="SELECT  idDia,dia from dia ;";
+        $sqlListaDia ="call SPlistaDia();";
          $cmd = $this->conexion->prepare($sqlListaDia);
          $cmd->execute();
          $listaConsulta = $cmd->fetchAll();

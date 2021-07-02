@@ -18,6 +18,8 @@
             $LogicaListaBecaInstitucional =$this->objBusquedaBecaInstitucional->listaBecaInstitucional($idPersonal);
             return $LogicaListaBecaInstitucional;
             }
+
+           
             public  function LogicaListaBecaInstitucionalMax(){
                 $LogicaListaBecaInstitucionalMax =$this->objBusquedaBecaInstitucional->listaBecaInstitucionalMax();
                 return $LogicaListaBecaInstitucionalMax;

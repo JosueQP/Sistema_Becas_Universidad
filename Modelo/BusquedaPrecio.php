@@ -12,7 +12,7 @@
 
         public function listaPrecio()
         {
-        $sqlListaPrecio ="SELECT  idPrecio,precio from precio order by precio;";
+        $sqlListaPrecio ="call SPBusquedaPrecio();";
          $cmd = $this->conexion->prepare($sqlListaPrecio);
          $cmd->execute();
          $listaConsulta = $cmd->fetchAll();

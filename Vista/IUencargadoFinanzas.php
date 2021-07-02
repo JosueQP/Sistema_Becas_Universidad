@@ -3,10 +3,10 @@
     //Iniciar una nueva sesión o reanudar la existente.
     session_start();
     //Si existe la sesión "cliente"..., la guardamos en una variable.
-    /*if (isset($_SESSION['usuario'])){
+    if (isset($_SESSION['usuario'])){
 		$user=$_SESSION['usuario'];
 		if(isset($_SESSION['contrasenia'])){
-			$pass=$_SESSION['contrasenia'];*/
+			$pass=$_SESSION['contrasenia'];
 
 			
 			require ("../Logica/LNPersonalBusqueda.php");
@@ -55,6 +55,19 @@
 				<div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
 					<ul class="navbar-nav">
 						<li><a  href="ReporteMensual.php">Reporte Mensual</a></li>
+						<li>
+						<form action="IUListaPersonal1.php" method="post"> 
+						<input type="hidden" name="i1dPersonal" value="<?php echo $datosUsuario['idPersonal']?>">
+						<input type="hidden" name="primerNombre" value="">
+						<input type="hidden" name="segundoNombre" value=""> 
+						<input type="hidden" name="apellidoPaterno" value="">
+						<input type="hidden" name="apellidoMaterno" value="">
+						<input type="hidden" name="ci" value="">
+						<input type="hidden" name="activo" value="todo">
+						<input type="hidden" name="buscar" value="buscar">
+						<input type="submit" value="personal" class="enviar">
+						</form>
+						</li>
 						<li><a href="salirPersonal.php">Cerrar Sesion</a></li>
 					</ul>
 				</div>
@@ -98,9 +111,9 @@
 <META HTTP-EQUIV="REFRESH" CONTENT="1000000;URL=../Vista/salirPersonal.php">
 </html>
 <?php
-/*}}else{
-	header('Location: ../salirPersonal.php');//Aqui lo redireccionas al lugar que quieras.
+}}else{
+	header('Location:salirPersonal.php');//Aqui lo redireccionas al lugar que quieras.
 		die() ;
 		
-	   }*/
+	   }
    ?>

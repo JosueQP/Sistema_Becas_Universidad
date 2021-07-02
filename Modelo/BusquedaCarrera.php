@@ -11,7 +11,7 @@
     
         public function listaCarrera()
         {
-        $sqlListaCarrera ="SELECT  * from carrera ;";
+        $sqlListaCarrera ="call SPlistaCarrera();";
          $cmd = $this->conexion->prepare($sqlListaCarrera);
          $cmd->execute();
          $listaConsulta = $cmd->fetchAll();

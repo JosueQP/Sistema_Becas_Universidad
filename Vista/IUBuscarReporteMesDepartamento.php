@@ -20,7 +20,7 @@ $listaRegistroEntradaSalidaABI = $ObjListaRegistroEntradaSalida ->ListaEntradaSa
 $listaRegistroEntradaSalidaSaldo = $ObjListaRegistroEntradaSalida->ListaEntradaSalidaSaldo($_REQUEST['idAsignacionBecaInstitucional'],$_REQUEST['fechaInicio'],$_REQUEST['fechaFin']);
 //var_dump($listaRegistroEntradaSalidaSaldo);
 $Reporte = $objLNListaPersonal -> ReporteMensual1($_REQUEST['idEstudiante']);
-//var_dump($Reporte);
+var_dump($Reporte);
 $listaEstudianteAsignacion=$objLNListaPersonal->LogicaEstudianteAsignacion();
 //var_dump($listaEstudianteAsignacion);
 
@@ -44,7 +44,7 @@ $envioId = $idContrato['idContrato'];
                              <br> <for>Departamento :</for>  <?php echo($Reporte['departamento'])?>
                              <br><for>Area :</for>   <?php echo($Reporte['area'])?>
                              <br> <for>Precio Hora :</for>  <?php echo($Reporte['precio'])?>
-                          <br><for>Jefe Departamento :</for>   <?php echo($Reporte['personal'])?>
+                             <br><for>Jefe Departamento :</for>   <?php echo($Reporte['personal'])?>
                              <br><for>Horario :</for> <a href="../Vista/IUHorarioEstudiante.php?idEstudiante=<?php  echo $Reporte['idEstudiante']; ?>">Ver</a>
                            
                              <br><for>Reporte Mensual :</for>   <?php echo($_REQUEST['fechaInicio'])?><for>----</for>   <?php echo($_REQUEST['fechaFin'])?>

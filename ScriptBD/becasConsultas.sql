@@ -1,3 +1,37 @@
+-- Consultas 1 parcial
+-- 1. Dada una gestion y estudiante mostrar en que departamento y area trabaja asi como tambien
+-- los horarios en el cual trabaja.
+SELECT a.nombre,d.nombre,e.primerNombre,pe.primerNombre,di.dia,ht.idHoraInicio,ht.idHoraFin
+FROM personal pe INNER JOIN personalDepartamento pd 
+ON pe.idPersonal = pd.idPersonal
+INNER JOIN departamento d 
+ON d.idDepartamento = pd.idDepartamento
+INNER JOIN area a 
+ON d.idDepartamento = a.idDepartamento 
+INNER JOIN  solicitudBecaInstitucional sbi 
+ON a.idArea = sbi.idArea
+INNER JOIN asignacionBecaInstitucional abi 
+ON sbi.idSolicitudBecaInstitucional = abi.idSolicitudBecaInstitucional
+INNER JOIN estudiante e 
+ON e.idEstudiante = abi.idEstudiante
+AND e.idEstudiante = 1
+INNER JOIN gestion g 
+ON g.idgestion = sbi.idgestion
+AND g.idGestion= 5 
+INNER JOIN horarioTrabajo ht 
+ON ht.idSolicitudBecaInstitucional=sbi.idSolicitudBecaInstitucional
+INNER JOIN dia di 
+ON di.idDia=ht.idDia ; 
+-- 2. Dada una gestion, estudiante, dos fechas (inicio y final).
+-- Mostrar un reporte donde muestre en que departamento y area trabaja, quien es su encargado,
+-- su total de horas trabajadas por cada fecha y el total de horas
+-- que realizo dadas esas fechas asi como el total que se le pagara por el total de horas que trabajo.4
+
+
+
+
+
+
 
 
 -- Consulta dado un departamento lista las areas
@@ -284,7 +318,7 @@ AND pd.idPersonal =4
 SELECT d.dia,CONCAT_WS(' ',e.apellidoPaterno,e.apellidoMaterno,e.primerNombre,e.segundoNombre) Estudiante,ht.idHoraInicio,ht.idHoraFin
 FROM estudiante e INNER JOIN asignacionBecaInstitucional abi 
 ON e.idEstudiante = abi.idEstudiante
-AND abi.idEstudiante=1
+AND abi.idEstudiante=3
 INNER JOIN solicitudBecaInstitucional sbi
 ON abi.idSolicitudBecaInstitucional = sbi.idSolicitudBecaInstitucional
 INNER JOIN horarioTrabajo ht 
@@ -431,3 +465,70 @@ ON d.idDia = ht.idDia;
         ON a.idArea = sbi.idArea;
 
   select * from gestion ORDER BY idGestion Desc;
+
+  ------------ estudiantes que  no tienen trabajo - -----------
+  SELECT  *
+  FROM solicitudBecaInstitucional  not in  idEstudiante ;
+
+
+          SELECT abi.idAsignacionBecaInstitucional,a.nombre,CONCAT_WS(' ',e.apellidoPaterno,e.apellidoMaterno,e.primerNombre,e.segundoNombre) Estudiante,e.idEstudiante,e.codigoEstudiante
+        FROM estudiante e INNER JOIN asignacionBecaInstitucional abi 
+        ON e.idEstudiante = abi.idEstudiante
+        INNER JOIN  solicitudBecaInstitucional sbi 
+        ON sbi.idSolicitudBecaInstitucional = abi.idSolicitudBecaInstitucional
+        INNER JOIN  area a 
+        ON a.idArea = sbi.idArea;\
+
+
+
+        ----------------------
+        SELECT  CONCAT_WS(' ',e.apellidoPaterno,e.apellidoMaterno,e.primerNombre,
+                        e.segundoNombre) estudiante,e.idEstudiante,g.nombre as gestion,d.nombre as departamento,a.nombre as area,pre.precio, CONCAT_WS(' ',p.apellidoPaterno,p.apellidoMaterno,p.primerNombre,
+                        p.segundoNombre) personal,abi.idAsignacionBecaInstitucional,e.codigoEstudiante
+                        FROM rol r INNER JOIN personal p 
+                        ON r.idRol = P.idRol
+                        INNER JOIN personalDepartamento pd 
+                        ON p.idPersonal = pd.idPersonal 
+                        INNER JOIN departamento d 
+                        ON d.idDepartamento = pd.idDepartamento
+                        INNER JOIN Area a 
+                        ON d.idDepartamento = a.idDepartamento
+                        INNER JOIN solicitudBecaInstitucional sbi 
+                        ON a.idArea = sbi.idArea
+                        INNER JOIN asignacionBecaInstitucional abi 
+                        ON sbi.idSolicitudBecaInstitucional = abi.idSolicitudBecaInstitucional
+                        INNER JOIN  estudiante e 
+                        on e.idEstudiante = abi.idEstudiante
+                        AND e.idEstudiante = 7
+                        INNER JOIN gestion g 
+                        ON g.idGestion = sbi.idGestion
+                        INNER JOIN precio pre 
+                        ON pre.idPrecio = sbi.idPrecio;
+-- =========================================================================
+SELECT * 
+FROM departamento d INNER JOIN personalDepartamento pd 
+ON d.idDepartamento= pd.idDepartamento
+WHERE pd.idDepartamento NOT IN (SELECT idDepartamento FROM departamento);
+
+
+SELECT * FROM  personalDepartamento 
+where idDepartamento NOT IN (SELECT idDepartamento FROM personalDepartamento);
+
+-- 
+
+          SELECT idRegistroEntradaSalida,idAsignacionBecaInstitucional,fecha,horaInicio,horaFin,totalHora
+          FROM registroEntradaSalida
+          WHERE idAsignacionBecaInstitucional = 1
+          AND fecha = "2021-07-02"
+          AND horaFin is NULL;
+
+
+             SELECT *,CONCAT_WS(' ',p.apellidoPaterno,p.apellidoMaterno,p.primerNombre,p.segundoNombre) AS nombreUsuario,p.idPersonal,d.nombre as departamento,d.idDepartamento
+            FROM departamento d inner join personalDepartamento dp
+            on dp.idDepartamento = d.idDepartamento
+            INNER JOIN personal p
+            on dp.idPersonal=p.idPersonal
+            and p.usuario='drivero'
+            inner join area a
+            on a.idDepartamento=d.idDepartamento
+            ;

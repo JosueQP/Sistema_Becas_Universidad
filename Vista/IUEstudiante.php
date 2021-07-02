@@ -7,7 +7,14 @@
 		$user=$_SESSION['usuario'];
 		if(isset($_SESSION['contrasenia'])){
 			$pass=$_SESSION['contrasenia'];
-    echo $_REQUEST['user'];
+            require ("../Logica/LNEstudianteBusqueda.php");
+    		$usuario= new LNEstudianteBusqueda();
+    		$idEstudiante=$_SESSION['idEstudiante'];
+            //echo $idEstudiante;
+			//$datosPersonal = $usuario->LogicaDatoPersonal($idPersonal);
+			$datosUsuario=$usuario->rolEstudiante($_SESSION['usuario']);
+            //var_dump($datosUsuario);
+			//$lista=$usuario->listaPersonal();*/
 ?>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
@@ -22,13 +29,13 @@
 	<title>Vista Estudiante</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700|Roboto:400,500" rel="stylesheet">
-	<link rel="stylesheet" href="css/linearicons.css">
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/owl.carousel.css">
-	<link rel="stylesheet" href="css/magnific-popup.css">
-	<link rel="stylesheet" href="css/nice-select.css">
-	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="fondo/css/linearicons.css">
+	<link rel="stylesheet" href="fondo/css/font-awesome.min.css">
+	<link rel="stylesheet" href="fondo/css/bootstrap.css">
+	<link rel="stylesheet" href="fondo/css/owl.carousel.css">
+	<link rel="stylesheet" href="fondo/css/magnific-popup.css">
+	<link rel="stylesheet" href="fondo/css/nice-select.css">
+	<link rel="stylesheet" href="fondo/css/main.css">
 </head>
 
 <body>
@@ -44,8 +51,9 @@
 
 				<div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
 					<ul class="navbar-nav">
-						<li><a href="#">Horario</a></li>
-						<li><a href="../SalirEstudiante.php">Cerrar Sesion</a></li>
+						<li><a href="../Vista/IUHorarioEstudiante.php?idEstudiante=<?php  echo $datosUsuario['idEstudiante']; ?>">Horario</a></li>
+                        <li><a href="../Vista/IUDescargo.php?codigoEstudiante=<?php  echo $datosUsuario['codigoEstudiante']; ?>">EstadoDeCuenta</a></li>
+						<li><a href="SalirEstudiante.php">Cerrar Sesion</a></li>
 					</ul>
 				</div>
 			</div>
@@ -62,6 +70,9 @@
 						Bienvenido <br>
 						Estudiante
 					</h1>
+                    <p>
+                        <?php echo $datosUsuario['nombreUsuario'];?>
+                    </p>
 				</div>
 			</div>
 		</div>
@@ -80,11 +91,11 @@
 	<script src="js/jquery.sticky.js"></script>
 	<script src="js/main.js"></script>
 </body>
-<META HTTP-EQUIV="REFRESH" CONTENT="300;URL=../SalirEstudiante.php">
+<META HTTP-EQUIV="REFRESH" CONTENT="10000000000;URL= SalirEstudiante.php">
 </html>
 <?php
 }}else{
-	header('Location: ../SalirEstudiante.php');//Aqui lo redireccionas al lugar que quieras.
+	header('Location: SalirEstudiante.php');//Aqui lo redireccionas al lugar que quieras.
 		die() ;
 		
 	   }

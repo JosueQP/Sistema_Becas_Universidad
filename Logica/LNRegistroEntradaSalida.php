@@ -39,18 +39,19 @@ if(!empty($_REQUEST['ci'])){
             $objLNRES = new LNRegistroEntradaSalidaPersistencia();
             //si hay datos, entonces quiere decir que el estudiante ya marco en la fecha actual.
             if($estudianteMarcoFecha){
-                //var_dump($estudianteMarcoFecha);
-                foreach($estudianteMarcoFecha as $registro){    
-                    if(is_null($registro['horaFin'])){
-                                            //registroSalida($idAsignacionBecaInstitucional,$horaFin,$horaInicio)
-                                            $registrado = $objLNRES->registroSalida($idAsignacionBecaInstitucional,$horaActual,$registro['horaInicio']);
-                        if($registrado>0){
-                            echo "Se actualizo de manera correcta la salida";
-                        }else{
-                            echo "Error al actualizar la hora inicio";
-                        }
-                    }
-                }
+                //echo $estudianteMarcoFecha;
+                $registrado = $objLNRES->registroSalida($estudianteMarcoFecha['idRegistroEntradaSalida'],$horaActual);
+                 if($registrado){
+                    $ultimoRegistro=$objLNBRES-> ultimoRegistro();
+                    //var_dump($ultimoRegistro);
+                    $actualizarTotalHoras=$objLNRES->actualizarTotalHoras($estudianteMarcoFecha['idRegistroEntradaSalida'], $ultimoRegistro['hora']); 
+                    echo "Se actualizo de manera correcta la salida";
+
+                }else{
+                    echo "Error al actualizar la hora inicio";
+                 
+                 }
+
             }//estudiante
             else{
                 //NO registro nada en esta fecha. Se registra la fecha y hora de entrada

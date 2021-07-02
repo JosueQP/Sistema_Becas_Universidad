@@ -49,15 +49,24 @@ INSERT INTO estudiante VALUES (NULL,51,'412','Jared','Yeny','Chura', '', 'Femeni
 INSERT INTO estudiante VALUES (NULL,70,'211', 'Mauricio', 'German', 'Ortiz', 'Bravo','Masculino',1);
 
 INSERT INTO estudiante VALUES (NULL,71,'212','Eddy','','Baldez','','Masculino',1);
+-----
+INSERT INTO estudiante VALUES (NULL,1313,'879512','Juan ','Felipe ','Paco ','Apaza ','Masculino',1);
 
 
 -- contrato 
-INSERT INTO contrato VALUES (NULL,1,1,4500,2000);
+INSERT INTO contrato VALUES (NULL,1,1,4500,1500);
 INSERT INTO contrato VALUES (NULL,6,3,5000,4500);
 INSERT INTO contrato VALUES (NULL,8,8,6000,5000);
 
+---- nuevo estudiante ----
+INSERT INTO contrato VALUES (NULL,12,3,4000,3770);
+
 -- saldo
 INSERT INTO saldo VALUES (NULL,1,'2021-02-06',2500,'becaInstitucional');
+INSERT INTO saldo VALUES (NULL,1,'2021-02-06',500,'propio');
 INSERT INTO saldo VALUES (NULL,2,'2021-04-02',500,'becaInstitucional');
 INSERT INTO saldo VALUES (NULL,3,'2021-03-05',1000,'becaInstitucional');
+
+--- nuevo estudiante --
+INSERT INTO saldo VALUES (NULL,4,'2021-03-23',280,'becaInstitucional');
 

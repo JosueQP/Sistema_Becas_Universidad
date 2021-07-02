@@ -8,7 +8,7 @@
 		{
 			$this->conexion =  new Conexion();
 		}
-     public function registrarHorario($idBecaInstitucional,$idDia,$idHoraInicio,$idHoraFin) 
+     public function registrarHorario($idSolicitudBecaInstitucional,$idDia,$idHoraInicio,$idHoraFin) 
          {
         $sqlRegistrarHorario= " 
                                 INSERT INTO horarioTrabajo (idSolicitudBecaInstitucional,idDia,idHoraInicio,idHoraFin)  

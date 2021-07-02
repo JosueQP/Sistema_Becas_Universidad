@@ -11,7 +11,7 @@
     public function listaBecaInstitucional($idPersonal)
    {  
        $sqlListaBecaInstitucional = "
-       SELECT  bi.idSolicitudBecaInstitucional,a.nombre as area, p.precio,count(a.idArea) as cantidad,d.nombre
+       SELECT  pe.idPersonal,bi.idSolicitudBecaInstitucional,a.nombre as area, p.precio,count(a.idArea) as cantidad,d.nombre
        from area a INNER JOIN solicitudBecaInstitucional bi
        ON a.idArea = bi.idArea
        INNER JOIN departamento d 
@@ -33,12 +33,9 @@
    }   
    public function listaBecaInstitucionalMax()
    {
-   $sqlListaBecaInstitucionalMax ="SELECT  bi.idBecaInstitucional as idBecaInstitucional,a.nombre as area, p.precio
-   from area a INNER JOIN solicitudBecaInstitucional bi
-   ON a.idArea = bi.idArea
-   INNER JOIN precio p
-   ON p.idPrecio=bi.idPrecio
-   WHERE bi.idSolicitudBecaInstitucional = (SELECT MAX(idSolicitudBecaInstitucional) as maxid FROM solicitudBecaInstitucional);";
+   $sqlListaBecaInstitucionalMax ="
+   call SPlistaBecaInstitucionalMax();      
+   ";
     $cmd = $this->conexion->prepare($sqlListaBecaInstitucionalMax);
     $cmd->execute();
     $listaConsulta = $cmd->fetchAll();

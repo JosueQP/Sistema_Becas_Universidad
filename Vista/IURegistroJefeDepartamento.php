@@ -11,7 +11,7 @@
      $listaDepartamento=$departamento->logicaListaDepartamento();
      $listaPersonalU=$usuario->LogicaListaPersonalU();
      $listaGestion=$gestion->logicaGestionActiva1();
-     var_dump($listaGestion);
+     //var_dump($listaGestion);
      $listaGestiones=$gestion->logicaGestiones();
     //Si existe la sesión "cliente"..., la guardamos en una variable.
    /* if (isset($_SESSION['usuario'])){
