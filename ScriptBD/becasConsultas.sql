@@ -26,8 +26,41 @@ ON di.idDia=ht.idDia ;
 -- Mostrar un reporte donde muestre en que departamento y area trabaja, quien es su encargado,
 -- su total de horas trabajadas por cada fecha y el total de horas
 -- que realizo dadas esas fechas asi como el total que se le pagara por el total de horas que trabajo.4
+SELECT d.nombre,a.nombre,pe.primerNombre,e.primerNombre,Sum(res.totalHora) as pago
+FROM gestion g INNER JOIN solicitudBecaInstitucional sbi 
+ON g.idgestion = sbi.idgestion
+AND g.idgestion = 5 
+INNER JOIN area a
+ON a.idArea = sbi.idArea
+INNER JOIN departamento d 
+ON d.idDepartamento = a.idDepartamento
+INNER JOIN personalDepartamento pd 
+ON d.idDepartamento = pd.idDepartamento
+INNER JOIN personal pe
+ON pe.idPersonal = pd.idPersonal
+INNER JOIN asignacionBecaInstitucional abi 
+ON sbi.idSolicitudBecaInstitucional = abi.idSolicitudBecaInstitucional
+INNER JOIN estudiante e 
+ON e.idEstudiante = abi.idEstudiante 
+AND e.idEstudiante = 1
+INNER JOIN registroEntradaSalida res 
+ON abi.idAsignacionBecaInstitucional = res.idAsignacionBecaInstitucional
+AND res.fecha BETWEEN '2021-02-01' AND '2021-02-26'
+INNER JOIN horarioTrabajo ht 
+ON sbi.idSolicitudBecaInstitucional = ht.idSolicitudBecaInstitucional
+INNER JOIN precio pre 
+ON pre.idPrecio = sbi.idPrecio;
+
+-- 3. Dada una gestion y estudiante mostrar un reporte donde liste por mes, 
+-- la cantidad de horas que trabajo en cada mes como asi
+-- los montos que realizo cada mes.
 
 
+
+
+-- 4. Dada una gestion, estudiante y mes: mostrar un reporte donde liste 
+-- por semana las horas totales que
+-- trabajo, cantidad que realizo por semana.
 
 
 
@@ -532,3 +565,29 @@ where idDepartamento NOT IN (SELECT idDepartamento FROM personalDepartamento);
             inner join area a
             on a.idDepartamento=d.idDepartamento
             ;
+
+---------------------------------------------------
+       SELECT  pe.idPersonal,bi.idSolicitudBecaInstitucional,a.nombre as area, p.precio,count(a.idArea) as cantidad,d.nombre
+       from area a INNER JOIN solicitudBecaInstitucional bi
+       ON a.idArea = bi.idArea
+       INNER JOIN departamento d 
+       ON d.idDepartamento=a.idDepartamento
+       INNER JOIN  personalDepartamento pd 
+       ON d.idDepartamento=pd.idDepartamento
+       INNER JOIN Personal pe
+       ON pe.idPersonal=pd.idPersonal
+       AND pe.idPersonal=:idPersonal
+       INNER JOIN precio p
+       ON p.idPrecio=bi.idPrecio
+       WHERE bi.idSolicitudBecaInstitucional NOT IN (SELECT idSolicitudBecaInstitucional FROM asignacionBecaInstitucional)
+       group by a.idArea;
+
+
+
+       SELECT * FROM 
+       departamento 
+       where idDepartamento NOT IN (SELECT idDepartamento FROM personalDepartamento);
+
+       SELECT * FROM 
+       estudiante
+       where idEstudiante NOT IN (SELECT idestudiante FROM asignacionbecainstitucional);

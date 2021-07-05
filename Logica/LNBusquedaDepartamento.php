@@ -18,6 +18,10 @@
 			$LogicaListaDepartamento =$this->objDepartamentoBusqueda->listaDepartamento();
 			return $LogicaListaDepartamento;
 			}
+			public  function LogicaListaDepartamentoLibres(){
+				$LogicaListaDepartamentoLibres =$this->objDepartamentoBusqueda->listaDepartamentoLibres();
+				return $LogicaListaDepartamentoLibres;
+				}
 			
 			public  function LogicaListaDepartamentoArea($idDepartamento){
 				$LogicaListaDepartamentoArea=$this->objDepartamentoBusqueda->listaDepartamentoArea($idDepartamento);

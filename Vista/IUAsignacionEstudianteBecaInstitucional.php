@@ -6,6 +6,7 @@ require ("../Logica/LNBusquedaBecaInstitucional.php");
 $becaInstitucional= new LNBusquedaBecaInstitucional();
 
 $listaEstudiantes = $estudiante->LogicalistaEstudiantes();
+$listaEstudiantesNoAsignados = $estudiante->LogicaListaEstudianteNoAsignados();
 //var_dump($listaEstudiantes);
 $idSolicitudBecaInstitucional = $_REQUEST['idSolicitudBecaInstitucional'];
 $listaBecaInstitucional=$becaInstitucional->LogicaListaBecaInstitucional($_REQUEST['idPersonal']);
@@ -30,7 +31,7 @@ $listaBecaInstitucional=$becaInstitucional->LogicaListaBecaInstitucional($_REQUE
                 <td>
                 
                     <select name="idEstudiante" id="idEstudiante">
-                      <?php foreach ($listaEstudiantes as $lista): ?>
+                      <?php foreach ($listaEstudiantesNoAsignados as $lista): ?>
                       <option value="<?php echo($lista['idEstudiante'])?>"><?php echo($lista['Estudiante'])?></option>
                     <?php endforeach ;
 
@@ -47,7 +48,7 @@ $listaBecaInstitucional=$becaInstitucional->LogicaListaBecaInstitucional($_REQUE
                
                    <select name="idSolicitudBecaInstitucional" id="idEstudiante">
                      <?php foreach ($listaBecaInstitucional as $lista12): ?>
-                     <option value="<?php echo($lista12['idSolicitudBecaInstitucional'])?>"><?php echo($lista12['nombre'])?></option>
+                     <option value="<?php echo($lista12['idSolicitudBecaInstitucional'])?>"><?php echo($lista12['area'])?></option>
                    <?php endforeach ;
 
                ?>

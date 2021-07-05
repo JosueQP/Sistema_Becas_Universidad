@@ -12,21 +12,28 @@
       $pass=$_SESSION['contrasenia']; */
 ?>
 
-<html>
-    <head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
         <title>Registro Personal</title>
     </head>
     <body >
-        <h1>REGISTRO DE PERSONAL</h1>
-        <br><br>
-
+    <div class="container mt-4 mb-4">
+    <div class="card card-secondary bg-dark text-center w-75 mx-auto d-block">
+          <div class="card-header bg-main text-light">
+                      <h3>Registro Personal</h3>
+                  </div>
+        <div class="card-body border-secondary bg-light">
        <form action="../Logica/LNRegistrarPersonal.php" method="post" name="registrarPersonal">
         <h3>
-        <table border = 1>
-            <th>area</th>
+        <table border = 1 align="center">
+            <th>Area</th>
                 <td>
                 
-                    <select name="idRol" id="idRol">
+                    <select name="idRol" id="idRol" class="custom-select mt-3">
                       <?php foreach ($listaRol as $lista): ?>
                       <option value="<?php echo($lista['idRol'])?>"><?php echo($lista['nombre'])?></option>
                     <?php endforeach ;
@@ -38,19 +45,19 @@
                 </td>
             </tr>
             <tr>
-                 <td>CI</td><td><input type="text" name="ci" id="ci"placeholder="solo numeros y caracteres"size=30></td>
+                 <td>CI</td><td><input type="text" name="ci" class="form-control mt-3 bb text"  id="ci"placeholder="solo numeros y caracteres"size=30></td>
              </tr>
            <tr>
-              <td>Primer Nombre</td><td><input type="text" name="primerNombre" pattern="[A-Za-z]+"placeholder="solo caracteres"size=30 minlength="3" maxlength="12"  required></td>
+              <td>Primer Nombre</td><td><input type="text" class="form-control mt-3 bb text"  name="primerNombre" pattern="[A-Za-z]+"placeholder="solo caracteres"size=30 minlength="3" maxlength="12"  required></td>
             </tr>
             <tr>
-              <td>Segundo Nombre</td><td><input type="text" name="segundoNombre" placeholder="solo caracteres"minlength="3" maxlength="12" size=30></td>
+              <td>Segundo Nombre</td><td><input type="text"class="form-control mt-3 bb text"   name="segundoNombre" placeholder="solo caracteres"minlength="3" maxlength="12" size=30></td>
             </tr>
             <tr>
-              <td>Apellido Paterno</td><td><input type="text" name="apellidoPaterno"placeholder="solo caracteres"minlength="3" maxlength="12" size=30  required></td>
+              <td>Apellido Paterno</td><td><input type="text"class="form-control mt-3 bb text"  name="apellidoPaterno"placeholder="solo caracteres"minlength="3" maxlength="12" size=30  required></td>
             </tr>
             <tr>
-              <td>Apellido Materno</td><td><input type="text" name="apellidoMaterno"placeholder="solo caracteres"minlength="3" maxlength="12" size=30></td>
+              <td>Apellido Materno</td><td><input type="text" class="form-control mt-3 bb text"  name="apellidoMaterno"placeholder="solo caracteres"minlength="3" maxlength="12" size=30></td>
             </tr>
               <tr>
               <td>Activo</td><td><input type="radio" name="activo"size=30 value='S'>S<input type="radio" name="activo"size=30 value='N'>N
@@ -59,12 +66,11 @@
         </table>
         </h3>
         
-        <input type = "submit" value = "Registrar">
-        <input type = "reset" value = "Cancelar"> 
+        <input type = "submit" value = "Registrar"class="btn  btn-danger mt-3">
+        <input type = "reset" value = "Cancelar"class="btn  btn-danger mt-3"> 
         </form>
-        <script>
-            
-        </script>
+        </div>
+    </div>
     </body>
 </html> 
 <?php

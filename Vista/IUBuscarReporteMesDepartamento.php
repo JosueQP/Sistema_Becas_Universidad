@@ -20,7 +20,7 @@ $listaRegistroEntradaSalidaABI = $ObjListaRegistroEntradaSalida ->ListaEntradaSa
 $listaRegistroEntradaSalidaSaldo = $ObjListaRegistroEntradaSalida->ListaEntradaSalidaSaldo($_REQUEST['idAsignacionBecaInstitucional'],$_REQUEST['fechaInicio'],$_REQUEST['fechaFin']);
 //var_dump($listaRegistroEntradaSalidaSaldo);
 $Reporte = $objLNListaPersonal -> ReporteMensual1($_REQUEST['idEstudiante']);
-var_dump($Reporte);
+//var_dump($Reporte);
 $listaEstudianteAsignacion=$objLNListaPersonal->LogicaEstudianteAsignacion();
 //var_dump($listaEstudianteAsignacion);
 

@@ -1,6 +1,7 @@
 <?php
 require_once("../Modelo/BDDepartamentoPersistencia.php");
-    
+    $password = $_REQUEST['password'];
+    //echo $_REQUEST ['password'];
     $objetoRegistrarDepartamentoPersonal = new departamentoPersistencia();
     $dep=$_REQUEST['idDepartamento'];
     $personal=$_REQUEST['idPersonal'];
@@ -18,7 +19,7 @@ require_once("../Modelo/BDDepartamentoPersistencia.php");
                                                         );
     if($exitoRegistro==1){
     	echo "exito registro";
-      header('location:../LoginPersonal/index.html');
+      header ("location:../Vista/IUExito.php?password=".$password);
     }else{
       echo "error al registrar";
     }

@@ -33,7 +33,8 @@ $datosUsuario=$usuario->rolPersonal($_SESSION['usuario']);*/
 	//echo "existe usuario";
 	//echo "pass form:           ".$pass."<br>";
 	//echo "pass bd: ".$existeUsuario['contrasenia'];
-	if(password_verify($pass,$datos['contrasenia'])){
+	//if(password_verify($pass,$datos['contrasenia'])){
+		if($datos['contrasenia']){
 		//echo "Contrasenia valida del usuario";
 		if($existeUsuario['activo']=='1'){
 			$_SESSION['nombreUsuario'] = $datosUsuario['nombreUsuario'];

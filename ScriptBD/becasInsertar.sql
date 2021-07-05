@@ -213,7 +213,15 @@ VALUES(2,12);
 -- Lunes 
 -- Febrero
 INSERT INTO registroEntradaSalida(idAsignacionBecaInstitucional,fecha,horaInicio, horaFin, totalHora,descargo) 
-VALUES (1,'2021-02-01','14:00','16:00',2.0,0);
+VALUES (1,'2021-02-01','14:00','14:30',0.03,0);
+INSERT INTO registroEntradaSalida(idAsignacionBecaInstitucional,fecha,horaInicio, horaFin, totalHora,descargo) 
+VALUES (1,'2021-02-01','14:30','15:00',0.03,0);
+INSERT INTO registroEntradaSalida(idAsignacionBecaInstitucional,fecha,horaInicio, horaFin, totalHora,descargo) 
+VALUES (1,'2021-02-01','15:00','15:10',0.01,0);
+INSERT INTO registroEntradaSalida(idAsignacionBecaInstitucional,fecha,horaInicio, horaFin, totalHora,descargo) 
+VALUES (1,'2021-02-01','15:10','15:30',0.05,0);
+INSERT INTO registroEntradaSalida(idAsignacionBecaInstitucional,fecha,horaInicio, horaFin, totalHora,descargo) 
+VALUES (1,'2021-02-01','15:30','16:00',0.05,0);
 -- Miercoles 
 INSERT INTO registroEntradaSalida(idAsignacionBecaInstitucional,fecha,horaInicio, horaFin, totalHora,descargo) 
 VALUES (1,'2021-02-03','14:00','17:00',3.0,0);

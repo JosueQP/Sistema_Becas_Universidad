@@ -19,6 +19,15 @@
             return $LogicaListaBecaInstitucional;
             }
 
+            public  function LogicaDetalleBecaInstitucional($idSolicitudBecaInstitucional){
+                $LogicaDetalleBecaInstitucional =$this->objBusquedaBecaInstitucional->detalleTrabajo($idSolicitudBecaInstitucional);
+                return $LogicaDetalleBecaInstitucional;
+                }
+                public  function LogicaHorarioBecaInstitucional($idsolicitudBecaInstitucional){
+                    $LogicaHorarioBecaInstitucional =$this->objBusquedaBecaInstitucional->HorarioSolicitud($idsolicitudBecaInstitucional);
+                    return $LogicaHorarioBecaInstitucional;
+                    }
+
            
             public  function LogicaListaBecaInstitucionalMax(){
                 $LogicaListaBecaInstitucionalMax =$this->objBusquedaBecaInstitucional->listaBecaInstitucionalMax();

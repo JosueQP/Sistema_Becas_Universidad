@@ -155,3 +155,27 @@ BEGIN
 END//
 DELIMITER ;
 call SPlistaBecaInstitucionalMax();
+
+-- departamentos que no estan asignados -- 
+DROP PROCEDURE IF EXISTS SPlistaDepartamentosLibres;
+DELIMITER //  
+CREATE PROCEDURE SPlistaDepartamentosLibres()
+BEGIN
+        SELECT * FROM 
+       departamento 
+       where idDepartamento NOT IN (SELECT idDepartamento FROM personalDepartamento);
+END//
+DELIMITER ;
+call SPlistaDepartamentosLibres();
+
+-- estudiantes no asignados -- 
+DROP PROCEDURE IF EXISTS SPlistaEstudiantesNoAsignados;
+DELIMITER //  
+CREATE PROCEDURE SPlistaEstudiantesNoAsignados()
+BEGIN
+       SELECT *,CONCAT_WS(' ',apellidoPaterno,apellidoMaterno,primerNombre,segundoNombre) Estudiante FROM 
+       estudiante
+       where idEstudiante NOT IN (SELECT idestudiante FROM asignacionbecainstitucional);
+END//
+DELIMITER ;
+call SPlistaEstudiantesNoAsignados();

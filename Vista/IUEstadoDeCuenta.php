@@ -54,7 +54,7 @@ $fechaActual = $dt -> format("Y-m-d");
                             $pagar = $ObjEstudianteBusquedaFinanza -> actualizarSaldo($idContrato,$montoPagar);
                            
                             $MandarDatoInsertar = $ObjEstudianteBusquedaFinanza -> InsertarSaldo($idContrato,$fechaActual,$ganancia);
-
+                            header("Location:ReporteMensual.php")
                             ?>
 
 							<br>

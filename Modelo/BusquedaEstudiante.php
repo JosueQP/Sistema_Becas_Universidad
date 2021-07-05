@@ -201,6 +201,17 @@
         return $listaConsulta;
         }
 
+        public function listaEstudiantesNoAsignados()
+        {
+        $sql ="
+        call SPlistaEstudiantesNoAsignados(); ";
+
+         $cmd = $this->conexion->prepare($sql);
+         $cmd->execute();
+         $listaConsulta = $cmd->fetchAll();
+        return $listaConsulta;
+        }
+
         public function listaEstudiantesAsignacion1($idPersonal)
         {
         $sql ="

@@ -67,7 +67,7 @@ header('Content-Type: text/html; charset=UTF-8');
 						<li><a  href="ReporteHorasTrabajadas.php?idPersonal=<?php echo $datosUsuario['idPersonal']?>">reporteHoras</a></li>
 						<li><a  href="IUReporteMensualDepartamento.php?idPersonal=<?php echo $datosUsuario['idPersonal']?>">Reporte Mensual</a></li>
 						<li><a  href="IUSolicitud.php?idPersonal=<?php echo $datosUsuario['idPersonal']?>">Solicitud</a></li>
-						<li>
+						<li class="navbar-nav">
 						<form action="IUListaEstudiante1.php" method="post"> 
 						<input type="hidden" name="idPersonal" value="<?php echo $datosUsuario['idPersonal'];?>">
 						<input type="hidden" name="primerNombre" value="">

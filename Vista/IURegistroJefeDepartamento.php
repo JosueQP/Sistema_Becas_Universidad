@@ -4,11 +4,13 @@
     require ("../Logica/LNGestionBusqueda.php");
     header('Content-Type: text/html; charset=UTF-8');
     //Iniciar una nueva sesión o reanudar la existente.
-
+    
+    echo $_REQUEST ['password'];
     $usuario = new LNPersonalBusqueda();
     $departamento = new LNDepartamentoBusqueda();
     $gestion = new LNGestionBusqueda();
      $listaDepartamento=$departamento->logicaListaDepartamento();
+     $listaDepartamentoLibres=$departamento->LogicaListaDepartamentoLibres();
      $listaPersonalU=$usuario->LogicaListaPersonalU();
      $listaGestion=$gestion->logicaGestionActiva1();
      //var_dump($listaGestion);
@@ -30,6 +32,7 @@
         <br><br>
 
        <form action="../Logica/LNRegistrarPersonalDepartamento.php" method="post" name="registrarPersonalDepartamento">
+       <input type="hidden" name="password" value="<?php echo $_REQUEST['password'];?>">
         <h3>
         <table border = 1>
         <th>Gestion</th>
@@ -46,7 +49,7 @@
             <th>Departamento</th>
                 <td>
                     <select name="idDepartamento" id="idDepartamento">
-                      <?php foreach ($listaDepartamento as $lista): ?>
+                      <?php foreach ($listaDepartamentoLibres as $lista): ?>
                       <option value="<?php echo($lista['idDepartamento'])?>"><?php echo($lista['nombre'])?></option>
                     <?php endforeach ;
 

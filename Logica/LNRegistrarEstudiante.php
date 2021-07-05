@@ -11,7 +11,7 @@
      $preUser=substr($_REQUEST['primerNombre'],-$preuser1,1);
     $prePassword=ucfirst($_REQUEST['primerNombre']);
     $prePassword1=substr($prePassword,-$preuser1,1);
-    $_REQUEST['contrasenia']=$prePassword1.$_REQUEST['apellidoPaterno'].$arroba.strtoupper($_REQUEST['ci']);
+    $password = $_REQUEST['contrasenia']=$prePassword1.$_REQUEST['apellidoPaterno'].$arroba.strtoupper($_REQUEST['ci']);
     $pass_cifrado=password_hash($_REQUEST['contrasenia'], PASSWORD_DEFAULT);
     //echo $pass_cifrado;
         if($_REQUEST['activo'] == 'S'){
@@ -50,6 +50,7 @@
         echo "El Estudiante se registro";
         //echo "usuario: ".$_REQUEST['usuario'];
         //echo "constrasenia: ".$_REQUEST['contrasenia'];
+        header ("location:../Vista/IUExito.php?password=".$password);
 
     }else{
         echo "Error al registrar el Estudiante";

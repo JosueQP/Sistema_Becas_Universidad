@@ -17,6 +17,14 @@
          $listaConsulta = $cmd->fetchAll();
         return $listaConsulta;
         }
+        public function listaDepartamentoLibres()
+        {
+        $sqlListaDepartamentoLibres ="call SPlistaDepartamentosLibres();";
+         $cmd = $this->conexion->prepare($sqlListaDepartamentoLibres);
+         $cmd->execute();
+         $listaConsulta = $cmd->fetchAll();
+        return $listaConsulta;
+        }
         public function listaDepartamentoArea($idDepartamento)
         {
         $sqllistaDepartamentoArea =" SELECT  d.nombre, a.nombre

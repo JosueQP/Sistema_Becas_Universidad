@@ -49,6 +49,10 @@
 			$LogicaListaEstudiante =$this->objDBEstudiante->listaEstudiante();
 			return $LogicaListaEstudiante;
 		}
+		public  function LogicaListaEstudianteNoAsignados(){
+			$LogicaListaEstudianteNoAsignados =$this->objDBEstudiante->listaEstudiantesNoAsignados();
+			return $LogicaListaEstudianteNoAsignados;
+		}
 		public  function LogicaEstudianteAsignacion(){
 			$LogicaEstudianteAsignacion =$this->objDBEstudiante->listaEstudiantesAsignacion();
 			return $LogicaEstudianteAsignacion;
